@@ -22,7 +22,7 @@ public:
 
 private:
     //GeneralPurpose registers V0 to VF
-    std::array<uint8_t,GpRegisterNum>vRegisters;
+    std::array<uint8_t,GpRegisterNum>vRegisters{};
 };
 
 
