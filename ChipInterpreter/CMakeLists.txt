@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CHIP_INTERPRETER_SOURCES
         ChipCore/RegisterBank.cpp ChipCore/RegisterBank.h
-        )
+        ChipCore/ResettableComponent.h)
 
 add_library(ChipInterpreter ${CHIP_INTERPRETER_SOURCES} )
