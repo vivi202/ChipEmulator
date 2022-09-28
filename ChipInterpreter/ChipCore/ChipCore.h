@@ -12,7 +12,7 @@ public:
     //TODO MEMORY
 
     //REGISTERS
-    RegisterBank RegisterBank;
+    RegisterBank registerBank;
 
     //TODO STACK
 
