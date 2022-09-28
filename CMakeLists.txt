@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(ChipInterpreter)
 
-include_directories(ChipInterpreter)
+include_directories(ChipInterpreter ChipInterpreter/ChipCore)
 add_executable(ChipEmulator main.cpp)
-target_link_libraries(ChipInterpreter)
+target_link_libraries(ChipEmulator ChipInterpreter)

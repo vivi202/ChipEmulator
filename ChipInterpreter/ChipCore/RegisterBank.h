@@ -17,6 +17,9 @@ public:
     uint8_t delay;
     uint8_t sound;
     uint8_t& operator[](int i);
+
+    void reset() override;
+
 private:
     //GeneralPurpose registers V0 to VF
     std::array<uint8_t,GpRegisterNum>vRegisters;

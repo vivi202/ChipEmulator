@@ -7,4 +7,4 @@ set(CHIP_INTERPRETER_SOURCES
         ChipCore/RegisterBank.cpp ChipCore/RegisterBank.h
         ChipCore/ResettableComponent.h)
 
-add_library(ChipInterpreter ${CHIP_INTERPRETER_SOURCES} )
+add_library(ChipInterpreter ${CHIP_INTERPRETER_SOURCES})
