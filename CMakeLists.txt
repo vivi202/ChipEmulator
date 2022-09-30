@@ -4,7 +4,7 @@ project(ChipEmulator)
 set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(ChipInterpreter)
-
-include_directories(ChipInterpreter ChipInterpreter/ChipCore)
+find_package(SDL2 REQUIRED)
+include_directories(ChipInterpreter ChipInterpreter/ChipCore ${SDL2_INCLUDE_DIRS})
 add_executable(ChipEmulator main.cpp)
-target_link_libraries(ChipEmulator ChipInterpreter)
+target_link_libraries(ChipEmulator ${SDL2_LIBRARIES} ChipInterpreter)

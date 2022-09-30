@@ -6,11 +6,12 @@
 #define CHIPEMULATOR_CHIPCORE_H
 
 #include "RegisterBank.h"
+#include "Ram.h"
 #include "ResettableComponent.h"
 class ChipCore: public ResettableComponent{
 public:
     //TODO MEMORY
-
+    Ram ram;
     //REGISTERS
     RegisterBank registerBank;
 
