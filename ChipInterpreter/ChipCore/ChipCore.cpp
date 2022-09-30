@@ -5,5 +5,9 @@
 #include "ChipCore.h"
 
 void ChipCore::reset() {
+    //Reset all components.
+    ram.reset();
+    registerBank.reset();
+    display->reset();
 
 }

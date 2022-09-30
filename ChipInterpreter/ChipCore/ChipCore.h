@@ -7,6 +7,7 @@
 
 #include "RegisterBank.h"
 #include "Ram.h"
+#include "Display.h"
 #include "ResettableComponent.h"
 class ChipCore: public ResettableComponent{
 public:
@@ -18,7 +19,7 @@ public:
     //TODO STACK
 
     //TODO DISPLAY
-
+    Display* display;
     //TODO KEYBOARD
 
     //
