@@ -9,5 +9,8 @@ void ChipCore::reset() {
     ram.reset();
     registerBank.reset();
     display->reset();
-
+    keyboard->reset();
+    //TODO check if there is a better way to clear the stack.
+    while (!callStack.empty())
+        callStack.pop();
 }

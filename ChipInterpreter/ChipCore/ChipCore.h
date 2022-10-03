@@ -4,25 +4,31 @@
 
 #ifndef CHIPEMULATOR_CHIPCORE_H
 #define CHIPEMULATOR_CHIPCORE_H
-
+#include <stack>
 #include "RegisterBank.h"
 #include "Ram.h"
 #include "Display.h"
+#include "Keyboard.h"
 #include "ResettableComponent.h"
 class ChipCore: public ResettableComponent{
 public:
-    //TODO MEMORY
+    ChipCore(Display *display,Keyboard *keyboard):display(display),keyboard(keyboard){
+        ram.reset();
+        registerBank.reset();
+        display->reset();
+        keyboard->reset();
+    };
+    //MEMORY
     Ram ram;
     //REGISTERS
     RegisterBank registerBank;
-
-    //TODO STACK
-
-    //TODO DISPLAY
+    //STACK
+    std::stack<uint16_t>callStack;
+    //DISPLAY
     Display* display;
-    //TODO KEYBOARD
+    //KEYBOARD
+    Keyboard* keyboard;
 
-    //
     void reset() override;
 private:
     //RNG and other things
