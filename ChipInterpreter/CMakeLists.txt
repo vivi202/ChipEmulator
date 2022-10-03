@@ -10,6 +10,6 @@ set(CHIP_INTERPRETER_SOURCES
         ChipCore/ResettableComponent.h ChipCore/ChipCore.cpp ChipCore/ChipCore.h ChipCore/Instruction.h
         ChipCore/Ram.cpp ChipCore/Ram.h ChipCore/Display.h ChipCore/Keyboard.cpp ChipCore/Keyboard.h ChipCore/instructionHelpers.cpp ChipCore/instructionHelpers.h)
 set(INSTRUCTION_SET_SOURCES
-        ChipCore/InstructionSet/Cls.h)
+        ChipCore/InstructionSet/Cls.h ChipCore/InstructionSet/JpAddr.h)
 
 add_library(ChipInterpreter ${CHIP_INTERPRETER_SOURCES} ${INSTRUCTION_SET_SOURCES})

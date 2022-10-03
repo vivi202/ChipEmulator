@@ -15,8 +15,10 @@ public:
     ChipCore(Display *display,Keyboard *keyboard):display(display),keyboard(keyboard){
         ram.reset();
         registerBank.reset();
-        display->reset();
-        keyboard->reset();
+        if(display)
+            display->reset();
+        if(keyboard)
+            keyboard->reset();
     };
     //MEMORY
     Ram ram;

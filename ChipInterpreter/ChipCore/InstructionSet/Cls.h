@@ -8,6 +8,7 @@
 #include "Instruction.h"
 class Cls : public Instruction{
 public:
+    Cls(uint16_t machineCode): Instruction(machineCode){};
     void execute(ChipCore &core) override {
         core.display->reset();
     }
