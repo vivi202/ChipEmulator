@@ -7,6 +7,9 @@ include_directories(ChipCore)
 add_subdirectory(ChipInterpreter_gtest)
 set(CHIP_INTERPRETER_SOURCES
         ChipCore/RegisterBank.cpp ChipCore/RegisterBank.h
-        ChipCore/ResettableComponent.h ChipCore/ChipCore.cpp ChipCore/ChipCore.h ChipCore/Instruction.h ChipCore/Ram.cpp ChipCore/Ram.h ChipCore/Display.h ChipCore/Keyboard.cpp ChipCore/Keyboard.h)
+        ChipCore/ResettableComponent.h ChipCore/ChipCore.cpp ChipCore/ChipCore.h ChipCore/Instruction.h
+        ChipCore/Ram.cpp ChipCore/Ram.h ChipCore/Display.h ChipCore/Keyboard.cpp ChipCore/Keyboard.h ChipCore/instructionHelpers.cpp ChipCore/instructionHelpers.h)
+set(INSTRUCTION_SET_SOURCES
+        ChipCore/InstructionSet/Cls.h)
 
-add_library(ChipInterpreter ${CHIP_INTERPRETER_SOURCES})
+add_library(ChipInterpreter ${CHIP_INTERPRETER_SOURCES} ${INSTRUCTION_SET_SOURCES})
