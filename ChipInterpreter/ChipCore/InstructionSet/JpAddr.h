@@ -6,7 +6,6 @@
 #define CHIPEMULATOR_JPADDR_H
 
 #include "Instruction.h"
-#include "instructionHelpers.h"
 class JpAddr: public Instruction{
 public:
     explicit JpAddr(uint16_t machineCode): Instruction(machineCode){};
