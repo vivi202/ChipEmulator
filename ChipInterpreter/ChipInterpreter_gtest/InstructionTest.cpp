@@ -6,6 +6,7 @@
 #include "Keyboard.h"
 #include "JpAddr.h"
 #include "LdVxByte.h"
+#include "AddVxByte.h"
 class InstructionTests : public ::testing::Test {
 protected:
     void SetUp() override {
@@ -34,6 +35,22 @@ TEST_F(InstructionTests,LdVxByte){
         ldVxByteInstruction->execute(core);
     }
     for (int i=0;i<RegisterBank::GpRegisterNum;i++){
-        ASSERT_EQ(core.registerBank[i],i);
+        EXPECT_EQ(core.registerBank[i],i);
     }
 }
+TEST_F(InstructionTests,AddVxByte){
+    for (int i = 0; i < RegisterBank::GpRegisterNum; ++i) {
+        core.registerBank[i]=10;
+    }
+
+    for (int i = 0; i < RegisterBank::GpRegisterNum; ++i) {
+        uint16_t machineCode=((0x70 | i) << 8) | 0x5 ;
+        auto addVxByteInstruction=std::make_unique<AddVxByte>(machineCode);
+        addVxByteInstruction->execute(core);
+    }
+    for (int i = 0; i < RegisterBank::GpRegisterNum; ++i) {
+        EXPECT_EQ(core.registerBank[i],15);
+    }
+
+}
+
