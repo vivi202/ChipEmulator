@@ -7,6 +7,7 @@
 #include "JpAddr.h"
 #include "LdVxByte.h"
 #include "AddVxByte.h"
+#include "LdIAddr.h"
 class InstructionTests : public ::testing::Test {
 protected:
     void SetUp() override {
@@ -53,4 +54,12 @@ TEST_F(InstructionTests,AddVxByte){
     }
 
 }
+
+TEST_F(InstructionTests,LdIAddr){
+    uint16_t machineCode=0xA112;
+    auto ldIAddrInstruction= std::make_unique<LdIAddr>(machineCode);
+    ldIAddrInstruction->execute(core);
+    EXPECT_EQ(core.registerBank.iReg,0x112);
+}
+
 
