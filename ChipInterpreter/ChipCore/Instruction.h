@@ -11,6 +11,7 @@
 #include "instructionHelpers.h"
 class Instruction {
 public:
+    virtual ~Instruction()=default;
     explicit Instruction(uint16_t machineCode){
         nnn = getNnn(machineCode);
         n   = getN(machineCode);

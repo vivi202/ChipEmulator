@@ -8,6 +8,6 @@ include_directories(../ChipCore/InstructionSet)
 add_executable(ChipInterpreter_test_run ${CHIP_INTERPRETER_SOURCES}
         InstructionTest.cpp
         runTests.cpp
-        )
+        instructionDecoderTests.cpp)
 
 target_link_libraries(ChipInterpreter_test_run gtest gtest_main ChipInterpreter)

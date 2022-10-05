@@ -19,7 +19,6 @@ protected:
 protected:
     Keyboard keyboard;
     ChipCore core=ChipCore(nullptr,&keyboard);
-
 };
 
 TEST_F(InstructionTests, jpAddr) {
