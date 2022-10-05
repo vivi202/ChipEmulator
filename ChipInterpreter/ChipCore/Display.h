@@ -24,8 +24,7 @@ public:
     int getHeight() const {
         return height;
     }
-
-private:
+protected:
     int width;
     int height;
 };
