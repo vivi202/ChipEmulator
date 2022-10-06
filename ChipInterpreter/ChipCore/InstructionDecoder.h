@@ -9,6 +9,7 @@
 #include "instructionFactories/InstructionFactory.h"
 #include "instructionFactories/FirstNibbleDecodedInstructionFactory.h"
 #include "instructionFactories/ZeroInstructionFactory.h"
+#include "instructionFactories/ArithmeticInstructionFactory.h"
 #include "Instruction.h"
 class InstructionDecoder {
 public:

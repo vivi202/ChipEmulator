@@ -5,7 +5,8 @@
 #include "InstructionDecoder.h"
 
 InstructionDecoder::InstructionDecoder() {
-instructionFactories={new ZeroInstructionFactory,new FirstNibbleDecodedInstructionFactory};
+instructionFactories={new ZeroInstructionFactory,new FirstNibbleDecodedInstructionFactory,
+                      new ArithmeticInstructionFactory};
 }
 
 InstructionDecoder::~InstructionDecoder() {

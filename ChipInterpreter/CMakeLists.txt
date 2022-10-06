@@ -16,7 +16,7 @@ set(CHIP_INTERPRETER_SOURCES
         ChipCore/instructionFactories/ZeroInstructionFactory.h
         ChipCore/instructionFactories/FirstNibbleDecodedInstructionFactory.cpp
         ChipCore/instructionFactories/FirstNibbleDecodedInstructionFactory.h
-        ChipCore/InstructionDecoder.cpp ChipCore/InstructionDecoder.h)
+        ChipCore/InstructionDecoder.cpp ChipCore/InstructionDecoder.h ChipCore/instructionFactories/ArithmeticInstructionFactory.cpp ChipCore/instructionFactories/ArithmeticInstructionFactory.h)
 set(INSTRUCTION_SET_SOURCES
         ChipCore/InstructionSet/Cls.h ChipCore/InstructionSet/JpAddr.h
         ChipCore/InstructionSet/LdVxByte.h ChipCore/InstructionSet/AddVxByte.h
