@@ -7,6 +7,7 @@
 
 #include "InstructionFactory.h"
 #include "InstructionSet/Cls.h"
+#include "InstructionSet/Ret.h"
 class ZeroInstructionFactory : public InstructionFactory{
 public:
     Instruction *createInstruction(uint16_t machineCode) override;

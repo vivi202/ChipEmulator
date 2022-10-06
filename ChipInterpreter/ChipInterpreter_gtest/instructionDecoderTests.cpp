@@ -17,6 +17,22 @@ protected:
     InstructionDecoder decoder= InstructionDecoder();
 };
 
+TEST_F(InstructionDecoderTests, ClsDecodingTest) {
+    auto decodedInst=decoder.decode(0x00E0);
+    auto clsInstruction=dynamic_cast<Cls*>(decodedInst);
+    ASSERT_NE(clsInstruction, nullptr);
+    delete decodedInst;
+}
+
+TEST_F(InstructionDecoderTests, RetDecodingTest) {
+    auto decodedInst=decoder.decode(0x00EE);
+    auto retInstruction=dynamic_cast<Ret*>(decodedInst);
+    ASSERT_NE(retInstruction, nullptr);
+    delete decodedInst;
+}
+
+
+
 TEST_F(InstructionDecoderTests, JpAddrDecodingTest) {
     for (int i = 0x200; i <= 0xFFF ; ++i) {
         uint16_t machineCode=0x1000 | i;
@@ -69,10 +85,5 @@ TEST_F(InstructionDecoderTests, DrwVxVyNibbleDecodingTest) {
     }
 }
 
-TEST_F(InstructionDecoderTests, ClsDecodingTest) {
-    auto decodedInst=decoder.decode(0x00E0);
-    auto clsInstruction=dynamic_cast<Cls*>(decodedInst);
-    ASSERT_NE(clsInstruction, nullptr);
-    delete decodedInst;
-}
+
 
