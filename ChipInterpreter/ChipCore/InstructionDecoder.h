@@ -10,6 +10,8 @@
 #include "instructionFactories/FirstNibbleDecodedInstructionFactory.h"
 #include "instructionFactories/ZeroInstructionFactory.h"
 #include "instructionFactories/ArithmeticInstructionFactory.h"
+#include "instructionFactories/EInstructionFactory.h"
+#include "instructionFactories/FInstructionFactory.h"
 #include "Instruction.h"
 class InstructionDecoder {
 public:
