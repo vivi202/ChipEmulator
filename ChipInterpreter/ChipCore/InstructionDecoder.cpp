@@ -15,10 +15,10 @@ InstructionDecoder::~InstructionDecoder() {
     }
 }
 
-Instruction *InstructionDecoder::decode(uint16_t machineCode) {
-    Instruction* instruction= nullptr;
-    for (auto itr=instructionFactories.begin();itr!= instructionFactories.end() && instruction == nullptr;itr++) {
-        instruction=(*itr)->createInstruction(machineCode);
+std::unique_ptr<Instruction> InstructionDecoder::decode(uint16_t machineCode) {
+    std::unique_ptr<Instruction> instructionPtr= nullptr;
+    for (auto itr=instructionFactories.begin();itr!= instructionFactories.end() && instructionPtr == nullptr;itr++) {
+        instructionPtr=(*itr)->createInstruction(machineCode);
     }
-    return instruction;
+    return instructionPtr;
 }

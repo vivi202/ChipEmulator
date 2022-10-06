@@ -20,7 +20,7 @@
 #include "InstructionSet/DrwVxVyNibble.h"
 class FirstNibbleDecodedInstructionFactory: public InstructionFactory{
 public:
-    Instruction *createInstruction(uint16_t machineCode) override;
+    std::unique_ptr<Instruction> createInstruction(uint16_t machineCode) override;
 };
 
 

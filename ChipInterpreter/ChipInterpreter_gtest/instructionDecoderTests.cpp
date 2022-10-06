@@ -19,16 +19,14 @@ protected:
 
 TEST_F(InstructionDecoderTests, ClsDecodingTest) {
     auto decodedInst=decoder.decode(0x00E0);
-    auto clsInstruction=dynamic_cast<Cls*>(decodedInst);
+    auto clsInstruction=dynamic_cast<Cls*>(decodedInst.get());
     ASSERT_NE(clsInstruction, nullptr);
-    delete decodedInst;
 }
 
 TEST_F(InstructionDecoderTests, RetDecodingTest) {
     auto decodedInst=decoder.decode(0x00EE);
-    auto retInstruction=dynamic_cast<Ret*>(decodedInst);
+    auto retInstruction=dynamic_cast<Ret*>(decodedInst.get());
     ASSERT_NE(retInstruction, nullptr);
-    delete decodedInst;
 }
 
 
@@ -37,9 +35,8 @@ TEST_F(InstructionDecoderTests, JpAddrDecodingTest) {
     for (int i = 0x200; i <= 0xFFF ; ++i) {
         uint16_t machineCode=0x1000 | i;
         auto decodedInst=decoder.decode(machineCode);
-        auto jpAddrInstruction=dynamic_cast<JpAddr*>(decodedInst);
+        auto jpAddrInstruction=dynamic_cast<JpAddr*>(decodedInst.get());
         ASSERT_NE(jpAddrInstruction, nullptr);
-        delete decodedInst;
     }
 
 }
@@ -48,9 +45,8 @@ TEST_F(InstructionDecoderTests, CallAddrDecodingTest) {
     for (int i = 0x200; i <= 0xFFF ; ++i) {
         uint16_t machineCode=0x2000 | i;
         auto decodedInst=decoder.decode(machineCode);
-        auto callAddrInstruction=dynamic_cast<CallAddr*>(decodedInst);
+        auto callAddrInstruction=dynamic_cast<CallAddr*>(decodedInst.get());
         ASSERT_NE(callAddrInstruction, nullptr);
-        delete decodedInst;
     }
 
 }
@@ -59,9 +55,8 @@ TEST_F(InstructionDecoderTests, SeVxByteDecodingTest) {
     for (int i = 0x000; i <= 0xFFF ; ++i) {
         uint16_t machineCode=0x3000 | i;
         auto decodedInst=decoder.decode(machineCode);
-        auto seVxByteInstruction=dynamic_cast<SeVxByte*>(decodedInst);
+        auto seVxByteInstruction=dynamic_cast<SeVxByte*>(decodedInst.get());
         ASSERT_NE(seVxByteInstruction, nullptr);
-        delete decodedInst;
     }
 
 }
@@ -70,9 +65,8 @@ TEST_F(InstructionDecoderTests, SneVxByteDecodingTest) {
     for (int i = 0x000; i <= 0xFFF ; ++i) {
         uint16_t machineCode=0x4000 | i;
         auto decodedInst=decoder.decode(machineCode);
-        auto sneVxByteInstruction=dynamic_cast<SneVxByte*>(decodedInst);
+        auto sneVxByteInstruction=dynamic_cast<SneVxByte*>(decodedInst.get());
         ASSERT_NE(sneVxByteInstruction, nullptr);
-        delete decodedInst;
     }
 
 }
@@ -81,9 +75,8 @@ TEST_F(InstructionDecoderTests, SeVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF ; ++i) {
         uint16_t machineCode=0x5000 | (i<<4);
         auto decodedInst=decoder.decode(machineCode);
-        auto seVxVyInstruction=dynamic_cast<SeVxVy*>(decodedInst);
+        auto seVxVyInstruction=dynamic_cast<SeVxVy*>(decodedInst.get());
         ASSERT_NE(seVxVyInstruction, nullptr);
-        delete decodedInst;
     }
 
 }
@@ -92,9 +85,8 @@ TEST_F(InstructionDecoderTests, LdVxByteDecodingTest) {
     for (int i = 0x000; i <= 0xFFF ; ++i) {
         uint16_t machineCode=0x6000 | i;
         auto decodedInst=decoder.decode(machineCode);
-        auto ldVxByteInstruction=dynamic_cast<LdVxByte*>(decodedInst);
+        auto ldVxByteInstruction=dynamic_cast<LdVxByte*>(decodedInst.get());
         ASSERT_NE(ldVxByteInstruction, nullptr);
-        delete decodedInst;
     }
 }
 
@@ -102,9 +94,8 @@ TEST_F(InstructionDecoderTests, AddVxByteDecodingTest) {
     for (int i = 0x000; i <= 0xFFF; ++i) {
         uint16_t machineCode=0x7000 | i;
         auto decodedInst=decoder.decode(machineCode);
-        auto addVxByteInstruction=dynamic_cast<AddVxByte*>(decodedInst);
+        auto addVxByteInstruction=dynamic_cast<AddVxByte*>(decodedInst.get());
         ASSERT_NE(addVxByteInstruction, nullptr);
-        delete decodedInst;
     }
 }
 //TODO LogicArithmeticInstructions
@@ -113,9 +104,8 @@ TEST_F(InstructionDecoderTests, LdVxVyDecodingTest) {
         uint16_t machineCode=0x8001 | (i << 4);
         std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
-        auto ldVxVyInstruction=dynamic_cast<LdVxVy*>(decodedInst);
+        auto ldVxVyInstruction=dynamic_cast<LdVxVy*>(decodedInst.get());
         ASSERT_NE(ldVxVyInstruction, nullptr);
-        delete decodedInst;
     }
 
 }
@@ -124,9 +114,8 @@ TEST_F(InstructionDecoderTests, LdIAddrDecodingTest) {
     for (int i = 0; i <= 0xFFF; ++i) {
         uint16_t machineCode=0xA000 | i;
         auto decodedInst=decoder.decode(machineCode);
-        auto ldIAddrInstruction=dynamic_cast<LdIAddr*>(decodedInst);
+        auto ldIAddrInstruction=dynamic_cast<LdIAddr*>(decodedInst.get());
         ASSERT_NE(ldIAddrInstruction, nullptr);
-        delete decodedInst;
     }
 
 }
@@ -135,9 +124,8 @@ TEST_F(InstructionDecoderTests, DrwVxVyNibbleDecodingTest) {
     for (int i = 0; i <= 0xFFF; ++i) {
         uint16_t machineCode=0xD000 | i;
         auto decodedInst=decoder.decode(machineCode);
-        auto drwVxVyNibbleInstruction=dynamic_cast<DrwVxVyNibble*>(decodedInst);
+        auto drwVxVyNibbleInstruction=dynamic_cast<DrwVxVyNibble*>(decodedInst.get());
         ASSERT_NE(drwVxVyNibbleInstruction, nullptr);
-        delete decodedInst;
     }
 }
 

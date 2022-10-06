@@ -14,7 +14,7 @@
 class InstructionDecoder {
 public:
     InstructionDecoder();
-    Instruction* decode(uint16_t machineCode);
+    std::unique_ptr<Instruction> decode(uint16_t machineCode);
 
     virtual ~InstructionDecoder();
 

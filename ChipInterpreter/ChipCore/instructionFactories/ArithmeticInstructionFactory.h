@@ -19,7 +19,7 @@ class ArithmeticInstructionFactory : public InstructionFactory{
 public:
     ~ArithmeticInstructionFactory() override = default;
 
-    Instruction *createInstruction(uint16_t machineCode) override;
+    std::unique_ptr<Instruction> createInstruction(uint16_t machineCode) override;
 };
 
 

@@ -3,28 +3,30 @@
 //
 
 #include "FirstNibbleDecodedInstructionFactory.h"
+
+#include <memory>
 //TODO FIND A BETTER NAME :)
-Instruction *FirstNibbleDecodedInstructionFactory::createInstruction(uint16_t machineCode) {
-    Instruction* instruction;
+std::unique_ptr<Instruction> FirstNibbleDecodedInstructionFactory::createInstruction(uint16_t machineCode) {
+    std::unique_ptr<Instruction>instructionPtr;
     uint8_t firstNibble=machineCode >> 12;
     switch (firstNibble) {
         case 0x1:
-            instruction=new JpAddr(machineCode);
+            instructionPtr=std::make_unique<JpAddr>(machineCode);
             break;
         case 0x6:
-            instruction=new LdVxByte(machineCode);
+            instructionPtr=std::make_unique<LdVxByte>(machineCode);
             break;
         case 0x7:
-            instruction=new AddVxByte(machineCode);
+            instructionPtr=std::make_unique<AddVxByte>(machineCode);
             break;
         case 0xA:
-            instruction=new LdIAddr(machineCode);
+            instructionPtr=std::make_unique<LdIAddr>(machineCode);
             break;
         case 0xD:
-            instruction=new DrwVxVyNibble(machineCode);
+            instructionPtr=std::make_unique<DrwVxVyNibble>(machineCode);
             break;
         default:
-            instruction= nullptr;
+            instructionPtr= nullptr;
     }
-    return instruction;
+    return instructionPtr;
 }
