@@ -8,7 +8,9 @@
 //TODO Implement Ret
 class Ret : public Instruction{
 public:
+
     explicit Ret(uint16_t machineCode): Instruction(machineCode){};
+
     ~Ret() override = default;
 
     void execute(ChipCore &core) override {
