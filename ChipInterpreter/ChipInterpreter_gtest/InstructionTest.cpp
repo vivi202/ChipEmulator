@@ -17,6 +17,8 @@
 #include "AndVxVy.h"
 #include "XorVxVy.h"
 #include "AddVxVy.h"
+#include "SubVxVy.h"
+#include "ShrVxVy.h"
 #include "LdIAddr.h"
 class InstructionTests : public ::testing::Test {
 protected:
@@ -152,7 +154,7 @@ TEST_F(InstructionTests,XorVxVy){
 TEST_F(InstructionTests,AddVxVy){
     core.registerBank[0xC]=220;
     core.registerBank[5]=40;
-    auto addVxVyInstruction= std::make_unique<AddVxVy>(0x8C55);
+    auto addVxVyInstruction= std::make_unique<AddVxVy>(0x8C54);
     addVxVyInstruction->execute(core);
     ASSERT_EQ(core.registerBank[0xF],1);
     ASSERT_EQ(core.registerBank[0xC],4);
@@ -160,6 +162,31 @@ TEST_F(InstructionTests,AddVxVy){
     addVxVyInstruction->execute(core);
     ASSERT_EQ(core.registerBank[0xF],0);
     ASSERT_EQ(core.registerBank[0xC],60);
+}
+
+TEST_F(InstructionTests,SubVxVy){
+    core.registerBank[3]=3;
+    core.registerBank[5]=6;
+    auto subVxVyInstruction=std::make_unique<SubVxVy>(0x8355);
+    subVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank[3],253);
+    ASSERT_EQ(core.registerBank[0xF],0);
+    core.registerBank[3]=10;
+    subVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank[3],4);
+    ASSERT_EQ(core.registerBank[0xF],1);
+}
+
+TEST_F(InstructionTests,ShrVxVy){
+    core.registerBank[2]=0xA1;
+    auto shrVxVyInstruction=std::make_unique<ShrVxVy>(0x8206);
+    shrVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank[0xF],1);
+    ASSERT_EQ(core.registerBank[2],0x50);
+    core.registerBank[2]=0xB0;
+    shrVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank[0xF],0);
+    ASSERT_EQ(core.registerBank[2],0x58);
 }
 
 TEST_F(InstructionTests,LdIAddr){
