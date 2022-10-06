@@ -15,6 +15,6 @@ set(CHIP_INTERPRETER_SOURCES
         ChipCore/instructionFactories/FirstNibbleDecodedInstructionFactory.h ChipCore/InstructionDecoder.cpp ChipCore/InstructionDecoder.h)
 set(INSTRUCTION_SET_SOURCES
         ChipCore/InstructionSet/Cls.h ChipCore/InstructionSet/JpAddr.h ChipCore/InstructionSet/LdVxByte.h
-        ChipCore/InstructionSet/AddVxByte.h ChipCore/InstructionSet/LdIAddr.h ChipCore/InstructionSet/DrwVxVyNibble.h)
+        ChipCore/InstructionSet/AddVxByte.h ChipCore/InstructionSet/LdIAddr.h ChipCore/InstructionSet/DrwVxVyNibble.h ChipCore/InstructionSet/Ret.h ChipCore/InstructionSet/CallAddr.h)
 
 add_library(ChipInterpreter ${CHIP_INTERPRETER_SOURCES} ${INSTRUCTION_SET_SOURCES})
