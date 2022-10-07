@@ -24,11 +24,15 @@
 #include "ShlVxVy.h"
 #include "SneVxVy.h"
 #include "JpV0Addr.h"
+#include "SkpVx.h"
+#include "SknpVx.h"
 #include "LdVxDt.h"
 #include "LdDtVx.h"
 #include "LdStVx.h"
 #include "AddIVx.h"
+#include "LdBVx.h"
 #include "LdIVx.h"
+#include "LdVxI.h"
 class InstructionTests : public ::testing::Test {
 protected:
     void SetUp() override {
@@ -248,9 +252,30 @@ TEST_F(InstructionTests,JpV0Addr){
     ASSERT_EQ(core.registerBank.pcReg,0x330);
 }
 
-//TODO Ex9E
 
-//TODO ExA1
+TEST_F(InstructionTests,SkpVx){
+    core.registerBank[7]=0xA;
+    keyboard.pressKey(0xA);
+    core.registerBank.pcReg=0x300;
+    auto skpVxInstruction=std::make_unique<SkpVx>(0xE79E);
+    skpVxInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.pcReg,0x302);
+    keyboard.releaseKey(0xA);
+    skpVxInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.pcReg,0x302);
+}
+
+TEST_F(InstructionTests,SknpVx){
+    core.registerBank.pcReg=0x300;
+    core.registerBank[8]=0x1;
+    keyboard.releaseKey(0x1);
+    auto sknpVxInstruction= std::make_unique<SknpVx>(0xE8A1);
+    sknpVxInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.pcReg,0x302);
+    keyboard.pressKey(0x1);
+    sknpVxInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.pcReg,0x302);
+}
 
 TEST_F(InstructionTests,LdVxDt){
     core.registerBank.delay=15;
@@ -284,7 +309,16 @@ TEST_F(InstructionTests,AddIVx){
 }
 //TODO Fx29
 
-//TODO Fx33
+TEST_F(InstructionTests,LdBVx){
+    uint16_t startAddress=0x400;
+    core.registerBank[3]=123;
+    core.registerBank.iReg=startAddress;
+    auto ldBVxInstruction = std::make_unique<LdBVx>(0xF333);
+    ldBVxInstruction->execute(core);
+    ASSERT_EQ(core.ram.read(startAddress),1);
+    ASSERT_EQ(core.ram.read(startAddress+1),2);
+    ASSERT_EQ(core.ram.read(startAddress+2),3);
+}
 
 TEST_F(InstructionTests,LdIVx){
     uint16_t startAddress=0x300;
@@ -299,5 +333,17 @@ TEST_F(InstructionTests,LdIVx){
     }
 }
 
+TEST_F(InstructionTests,LdVxI){
+    uint16_t startAddress=0x300;
+    for (int offset = 0; offset < 0xF; ++offset) {
+        core.ram.write(startAddress+offset,offset);
+    }
+    auto ldVxIInstruction = std::make_unique<LdVxI>(0xF065);
+    ldVxIInstruction->execute(core);
+
+    for (int regIndex = 0; regIndex < 0xF; ++regIndex) {
+        ASSERT_EQ(core.registerBank[regIndex],core.ram.read(startAddress+regIndex));
+    }
+}
 
 

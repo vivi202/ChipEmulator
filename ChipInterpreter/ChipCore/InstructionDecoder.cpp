@@ -6,7 +6,7 @@
 
 InstructionDecoder::InstructionDecoder() {
 instructionFactories={new ZeroInstructionFactory,new FirstNibbleDecodedInstructionFactory,
-                      new ArithmeticInstructionFactory,new EInstructionFactory};
+                      new ArithmeticInstructionFactory,new EInstructionFactory,new FInstructionFactory};
 }
 
 InstructionDecoder::~InstructionDecoder() {
