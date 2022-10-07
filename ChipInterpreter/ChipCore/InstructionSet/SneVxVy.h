@@ -5,11 +5,8 @@
 #ifndef CHIPEMULATOR_SNEVXVY_H
 #define CHIPEMULATOR_SNEVXVY_H
 #include "Instruction.h"
-//TODO implement SneVxVy
-class SneVxVy : Instruction{
+class SneVxVy : public Instruction{
 public:
-private:
-
     explicit SneVxVy(uint16_t machineCode): Instruction(machineCode){};
 
     ~SneVxVy() override = default;

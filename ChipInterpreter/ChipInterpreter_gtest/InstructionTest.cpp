@@ -20,6 +20,15 @@
 #include "SubVxVy.h"
 #include "ShrVxVy.h"
 #include "LdIAddr.h"
+#include "SubnVxVy.h"
+#include "ShlVxVy.h"
+#include "SneVxVy.h"
+#include "JpV0Addr.h"
+#include "LdVxDt.h"
+#include "LdDtVx.h"
+#include "LdStVx.h"
+#include "AddIVx.h"
+#include "LdIVx.h"
 class InstructionTests : public ::testing::Test {
 protected:
     void SetUp() override {
@@ -189,11 +198,106 @@ TEST_F(InstructionTests,ShrVxVy){
     ASSERT_EQ(core.registerBank[2],0x58);
 }
 
+TEST_F(InstructionTests,SubnVxVy){
+    core.registerBank[6]=10;//Vx
+    core.registerBank[3]=5;//Vy
+    auto subnVxVyInstruction= std::make_unique<SubnVxVy>(0x8637);
+    subnVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank[0xF],0);
+    ASSERT_EQ(core.registerBank[0x6],251);
+    core.registerBank[6]=2;
+    ASSERT_EQ(core.registerBank[0xF],1);
+    ASSERT_EQ(core.registerBank[0x6],3);
+}
+
+TEST_F(InstructionTests,ShlVxVy){
+    core.registerBank[7]=0x80;
+    auto shlVxVyInstruction=std::make_unique<ShlVxVy>(0x873E);
+    shlVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank[0xF],1);
+    ASSERT_EQ(core.registerBank[0x7],0x00);
+    core.registerBank[7]=0x40;
+    shlVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank[0xF],0);
+    ASSERT_EQ(core.registerBank[0x7],0x80);
+}
+
+TEST_F(InstructionTests,SneVxVy){
+    core.registerBank.pcReg=0x300;
+    core.registerBank[0x4]=0x44;
+    core.registerBank[0x2]=0x22;
+    auto sneVxVyInstruction= std::make_unique<SneVxVy>(0x9420);
+    sneVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.pcReg,0x302);
+    core.registerBank[0x2]=0x44;
+    sneVxVyInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.pcReg,0x302);
+}
+
 TEST_F(InstructionTests,LdIAddr){
     uint16_t machineCode=0xA112;
     auto ldIAddrInstruction= std::make_unique<LdIAddr>(machineCode);
     ldIAddrInstruction->execute(core);
     ASSERT_EQ(core.registerBank.iReg,0x112);
 }
+
+TEST_F(InstructionTests,JpV0Addr){
+    core.registerBank.pcReg=0x200;
+    core.registerBank[0]=0x30;
+    auto jpV0AddrInstruction=std::make_unique<JpV0Addr>(0xB300);
+    ASSERT_EQ(core.registerBank.pcReg,0x330);
+}
+
+//TODO Ex9E
+
+//TODO ExA1
+
+TEST_F(InstructionTests,LdVxDt){
+    core.registerBank.delay=15;
+    auto ldVxDtInstruction = std::make_unique<LdVxDt>(0xF307);
+    ldVxDtInstruction->execute(core);
+    ASSERT_EQ(core.registerBank[0x3],15);
+}
+
+//TODO Fx0A
+
+TEST_F(InstructionTests,LdDtVx){
+    core.registerBank[0x4]=30;
+    auto ldDtVxInstruction = std::make_unique<LdDtVx>(0xF415);
+    ldDtVxInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.delay,30);
+}
+
+TEST_F(InstructionTests,LdStVx){
+    core.registerBank[0x6]=22;
+    auto ldStVxInstruction=std::make_unique<LdStVx>(0xF618);
+    ldStVxInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.sound,22);
+}
+
+TEST_F(InstructionTests,AddIVx){
+    core.registerBank.iReg=0x400;
+    core.registerBank[0xA]=0x40;
+    auto addIVxInstruction=std::make_unique<AddIVx>(0xFA1E);
+    addIVxInstruction->execute(core);
+    ASSERT_EQ(core.registerBank.iReg,0x440);
+}
+//TODO Fx29
+
+//TODO Fx33
+
+TEST_F(InstructionTests,LdIVx){
+    uint16_t startAddress=0x300;
+    for (int regIndex = 0; regIndex < 0xF; ++regIndex) {
+        core.registerBank[regIndex]=regIndex;
+    }
+    core.registerBank.iReg=startAddress;
+    auto ldIVxInstruction=std::make_unique<LdIVx>(0xF355);
+    ldIVxInstruction->execute(core);
+    for (int addressOffset = 0; addressOffset < 0xF; ++addressOffset) {
+        ASSERT_EQ(core.ram.read(startAddress+addressOffset),addressOffset);
+    }
+}
+
 
 
