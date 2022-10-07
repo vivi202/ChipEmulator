@@ -4,6 +4,10 @@
 
 #include "Ram.h"
 
+Ram::Ram(): memory({0}) {
+    loadFontSprites();
+}
+
 void Ram::reset() {
     memory.fill(0);
     //After memory reset, font sprites should be reloaded.
@@ -24,6 +28,3 @@ void Ram::loadFontSprites() {
     }
 }
 
-Ram::Ram(): memory({0}) {
-    loadFontSprites();
-}

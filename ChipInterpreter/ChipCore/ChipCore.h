@@ -15,12 +15,14 @@ public:
     ChipCore(Display *display,Keyboard *keyboard):display(display),keyboard(keyboard){
         ram.reset();
         registerBank.reset();
+        registerBank.pcReg=PROGRAM_START_ADDRESS;
         if(display)
             display->reset();
         if(keyboard)
             keyboard->reset();
     };
     //MEMORY
+    static const int PROGRAM_START_ADDRESS=0x200;
     Ram ram;
     //REGISTERS
     RegisterBank registerBank;
