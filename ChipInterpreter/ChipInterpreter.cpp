@@ -3,6 +3,7 @@
 //
 
 #include "ChipInterpreter.h"
+#include "iostream"
 void ChipInterpreter::reset() {
     core->reset();
 }
@@ -22,9 +23,12 @@ void ChipInterpreter::cycle() {
     //Fetch instruction
     uint16_t machineCode=fetch();
     //Decode instruction
-    auto instruction = instructionDecoder.decode(machineCode);
-    instruction->execute(*core);
-
+    try {
+        auto instruction = instructionDecoder.decode(machineCode);
+        instruction->execute(*core);
+    }catch (IllegalInstructionException &e){
+        std::cout<<"Instruction  execution Failed:"<< std::hex<<e.machineCode<<"\n";
+    }
 }
 
 void ChipInterpreter::handleTimers() {
@@ -33,4 +37,12 @@ void ChipInterpreter::handleTimers() {
     if(core->registerBank.sound > 0)
         core->registerBank.sound-=1;
 }
+
+void ChipInterpreter::loadProgramData(uint8_t *data, long programSize) {
+    core->reset();
+    for (int i = 0; i < programSize; ++i) {
+        core->ram.write(ChipCore::PROGRAM_START_ADDRESS + i,data[i]);
+    }
+}
+
 

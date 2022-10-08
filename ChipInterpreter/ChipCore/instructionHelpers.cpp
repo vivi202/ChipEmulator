@@ -24,5 +24,5 @@ uint8_t getKk(uint16_t machineCode) {
 }
 //Return the lowest 4 bits of the instruction
 uint16_t getN(uint16_t machineCode) {
-    return 0;
+    return machineCode & 0xF;
 }

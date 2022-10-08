@@ -8,6 +8,7 @@ void ChipCore::reset() {
     //Reset all components.
     ram.reset();
     registerBank.reset();
+    registerBank.pcReg=PROGRAM_START_ADDRESS;
     if(display)
         display->reset();
     if(keyboard)

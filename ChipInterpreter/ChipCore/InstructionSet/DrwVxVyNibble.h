@@ -13,8 +13,8 @@ public:
     void execute(ChipCore &core) override {
         uint16_t startAddress=core.registerBank.iReg;//base address of sprite data.
         uint8_t spriteSize=n;//size of sprite expressed in bytes
-        uint8_t startXCoord=x;
-        uint8_t startYCoord=y;
+        uint8_t startXCoord=core.registerBank[x];
+        uint8_t startYCoord=core.registerBank[y];
         //wrap coordinates using modulo operator.
         startXCoord= startXCoord % core.display->getWidth();
         startYCoord= startYCoord % core.display->getHeight();

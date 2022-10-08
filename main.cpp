@@ -4,7 +4,9 @@
 int main() {
     Window* window=Window::getInstance();
     RenderEngine engine;
+    Rom rom("Rom/IBM Logo.ch8");
     ChipInterpreterHandler chipInterpreterHandler(500);
+    chipInterpreterHandler.loadRom(rom);
     engine.addDrawable(&chipInterpreterHandler);
     while (window->isRunning()){
         SDL_Event e;

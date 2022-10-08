@@ -13,6 +13,7 @@ public:
     void reset() override;
     void cycle();
     void handleTimers();
+    void loadProgramData(uint8_t* data,long programSize);
 private:
     InstructionDecoder instructionDecoder;
     std::unique_ptr<ChipCore> core;

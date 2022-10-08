@@ -8,9 +8,12 @@
 #include "ChipInterpreter.h"
 #include "SdlChipDisplay.h"
 #include "DisplayTextureHandler.h"
+#include "Rom.h"
+#include <fstream>
 class ChipInterpreterHandler : public Drawable{
 public:
     explicit ChipInterpreterHandler(int frequency):frequency(frequency){};
+    void loadRom(Rom& rom);
     void handleExecution();
     void handleEvents(SDL_Event &e);
     void draw() override;
