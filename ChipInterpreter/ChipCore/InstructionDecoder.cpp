@@ -20,5 +20,7 @@ std::unique_ptr<Instruction> InstructionDecoder::decode(uint16_t machineCode) {
     for (auto itr=instructionFactories.begin();itr!= instructionFactories.end() && instructionPtr == nullptr;itr++) {
         instructionPtr=(*itr)->createInstruction(machineCode);
     }
+    if(!instructionPtr)
+        throw IllegalInstructionException(machineCode);
     return instructionPtr;
 }

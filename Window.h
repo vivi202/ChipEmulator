@@ -14,7 +14,7 @@ public:
     ~Window();
     void quit();
     bool isRunning() const;
-    void events();
+    void events(SDL_Event& e);
 private:
     Window();
     static Window* instance;

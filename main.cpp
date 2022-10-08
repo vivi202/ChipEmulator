@@ -1,16 +1,19 @@
 #include "Window.h"
-#include "DisplayTextureHandler.h"
 #include "RenderEngine.h"
+#include "ChipInterpreterHandler.h"
 int main() {
     Window* window=Window::getInstance();
     RenderEngine engine;
-    DisplayTextureHandler displayHandler;
-    engine.addDrawable(&displayHandler);
+    ChipInterpreterHandler chipInterpreterHandler(500);
+    engine.addDrawable(&chipInterpreterHandler);
     while (window->isRunning()){
-        window->events();
-        SDL_RenderClear(window->getRenderer());
-        engine.drawAll();
-        SDL_RenderPresent(window->getRenderer());
+        SDL_Event e;
+        while (SDL_PollEvent(&e) !=0){
+            window->events(e);
+            chipInterpreterHandler.handleEvents(e);
+        }
+        chipInterpreterHandler.handleExecution();
+        engine.render();
     }
 
     delete window;

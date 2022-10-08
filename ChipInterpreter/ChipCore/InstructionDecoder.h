@@ -13,6 +13,7 @@
 #include "instructionFactories/EInstructionFactory.h"
 #include "instructionFactories/FInstructionFactory.h"
 #include "Instruction.h"
+#include "../IllegalInstructionException.h"
 class InstructionDecoder {
 public:
     InstructionDecoder();

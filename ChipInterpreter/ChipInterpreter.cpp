@@ -3,7 +3,6 @@
 //
 
 #include "ChipInterpreter.h"
-
 void ChipInterpreter::reset() {
     core->reset();
 }
@@ -24,9 +23,8 @@ void ChipInterpreter::cycle() {
     uint16_t machineCode=fetch();
     //Decode instruction
     auto instruction = instructionDecoder.decode(machineCode);
-    //TODO handle when machine code is invalid and leads to a null instruction.
-    //execute instruction
     instruction->execute(*core);
+
 }
 
 void ChipInterpreter::handleTimers() {

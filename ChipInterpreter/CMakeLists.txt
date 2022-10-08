@@ -20,7 +20,7 @@ set(CHIP_INTERPRETER_SOURCES
         ChipCore/instructionFactories/ArithmeticInstructionFactory.cpp
         ChipCore/instructionFactories/ArithmeticInstructionFactory.h
         ChipCore/instructionFactories/EInstructionFactory.cpp ChipCore/instructionFactories/EInstructionFactory.h
-        ChipCore/instructionFactories/FInstructionFactory.cpp ChipCore/instructionFactories/FInstructionFactory.h ChipInterpreter.cpp ChipInterpreter.h)
+        ChipCore/instructionFactories/FInstructionFactory.cpp ChipCore/instructionFactories/FInstructionFactory.h ChipInterpreter.cpp ChipInterpreter.h IllegalInstructionException.h)
 set(INSTRUCTION_SET_SOURCES
         ChipCore/InstructionSet/Cls.h ChipCore/InstructionSet/JpAddr.h
         ChipCore/InstructionSet/LdVxByte.h ChipCore/InstructionSet/AddVxByte.h

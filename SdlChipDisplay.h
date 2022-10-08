@@ -7,11 +7,13 @@
 #include "Display.h"
 #include <cstdint>
 #include <algorithm>
+#include "DisplayTextureHandler.h"
+class DisplayTextureHandler;
 class SdlChipDisplay : public Display{
 public:
     static const int SDL_CHIP_DISPLAY_WIDTH=64;
     static const int SDL_CHIP_DISPLAY_HEIGHT=32;
-    explicit SdlChipDisplay(uint32_t backgroundColor=0x0,uint32_t pixelColor=0x0FFFFFF);
+    explicit SdlChipDisplay(DisplayTextureHandler* textureHandler,uint32_t backgroundColor=0x0,uint32_t pixelColor=0x0FFFFFF);
 
     ~SdlChipDisplay() override;
 
@@ -23,10 +25,12 @@ public:
 
     void reset() override;
 
+    void notifyTextureHandler();
 private:
     uint32_t *frameBuff;
     uint32_t backgroundColor;
     uint32_t pixelColor;
+    DisplayTextureHandler* textureHandler;
 };
 
 

@@ -17,3 +17,9 @@ void RenderEngine::drawAll() {
         itr->draw();
     }
 }
+
+void RenderEngine::render() {
+    SDL_RenderClear(Window::getInstance()->getRenderer());
+    drawAll();
+    SDL_RenderPresent(Window::getInstance()->getRenderer());
+}

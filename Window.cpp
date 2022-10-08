@@ -50,15 +50,11 @@ bool Window::isRunning() const {
     return running;
 }
 
-void Window::events() {
-    //poll for events
-    SDL_Event e;
-    while (SDL_PollEvent(&e) !=0){
-        switch (e.type) {
-            case SDL_QUIT:
-                quit();
-                break;
-        }
+void Window::events(SDL_Event& e) {
+    switch (e.type) {
+        case SDL_QUIT:
+            quit();
     }
+
 }
 
