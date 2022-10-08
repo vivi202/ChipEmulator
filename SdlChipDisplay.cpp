@@ -30,8 +30,8 @@ SdlChipDisplay::~SdlChipDisplay() {
     delete frameBuff;
 }
 
-SdlChipDisplay::SdlChipDisplay(int width, int height, uint32_t backgroundColor, uint32_t pixelColor):
-Display(width,height),backgroundColor(backgroundColor),pixelColor(pixelColor){
+SdlChipDisplay::SdlChipDisplay(uint32_t backgroundColor, uint32_t pixelColor):
+Display(SDL_CHIP_DISPLAY_WIDTH,SDL_CHIP_DISPLAY_HEIGHT),backgroundColor(backgroundColor),pixelColor(pixelColor){
     frameBuff=new uint32_t[width*height];
-    std::fill(frameBuff,frameBuff+(width*height),0);
+    std::fill(frameBuff,frameBuff+(width*height),backgroundColor);
 }
