@@ -20,7 +20,6 @@ void SdlChipDisplay::writePixel(int x, int y, bool value) {
     }else{
         frameBuff[y*width + x]=backgroundColor;
     }
-    notifyTextureHandler();
 }
 
 void SdlChipDisplay::reset() {
@@ -42,4 +41,8 @@ pixelColor(pixelColor),textureHandler(textureHandler){
 
 void SdlChipDisplay::notifyTextureHandler() {
     textureHandler->updateTexture(frameBuff);
+}
+
+void SdlChipDisplay::notify() {
+    notifyTextureHandler();
 }

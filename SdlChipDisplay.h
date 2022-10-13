@@ -25,6 +25,8 @@ public:
 
     void reset() override;
 
+    void notify() override;
+
     void notifyTextureHandler();
 private:
     uint32_t *frameBuff;
