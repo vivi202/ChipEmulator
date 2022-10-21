@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_ANDVXVY_H
 #define CHIPEMULATOR_ANDVXVY_H
 #include "Instruction.h"
-//TODO implement AndVxVy
 class AndVxVy : public Instruction{
 public:
 
@@ -14,7 +13,7 @@ public:
     ~AndVxVy() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank[x]&=core.registerBank[y];
     }
 
     std::string toAsm() override {

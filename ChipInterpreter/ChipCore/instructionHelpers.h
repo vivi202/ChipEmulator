@@ -11,6 +11,7 @@ uint16_t getN(uint16_t machineCode);
 uint8_t getX(uint16_t machineCode);
 uint8_t getY(uint16_t machineCode);
 uint8_t getKk(uint16_t machineCode);
+uint8_t getfirstMsbNibble(uint16_t machineCode);
 
 
 #endif //CHIPEMULATOR_INSTRUCTIONHELPERS_H

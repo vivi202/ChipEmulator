@@ -249,6 +249,7 @@ TEST_F(InstructionTests,JpV0Addr){
     core.registerBank.pcReg=0x200;
     core.registerBank[0]=0x30;
     auto jpV0AddrInstruction=std::make_unique<JpV0Addr>(0xB300);
+    jpV0AddrInstruction->execute(core);
     ASSERT_EQ(core.registerBank.pcReg,0x330);
 }
 

@@ -26,3 +26,6 @@ uint8_t getKk(uint16_t machineCode) {
 uint16_t getN(uint16_t machineCode) {
     return machineCode & 0xF;
 }
+uint8_t getfirstMsbNibble(uint16_t machineCode){
+    return machineCode >> 12;
+}

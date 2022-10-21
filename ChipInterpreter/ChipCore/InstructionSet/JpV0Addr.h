@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_JPV0ADDR_H
 #define CHIPEMULATOR_JPV0ADDR_H
 #include "Instruction.h"
-//TODO implement Jpv0Addr
 class JpV0Addr : public Instruction{
 public:
 
@@ -14,7 +13,7 @@ public:
     ~JpV0Addr() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank.pcReg=nnn+core.registerBank[0];
     }
 
     std::string toAsm() override {

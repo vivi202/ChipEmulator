@@ -14,6 +14,9 @@ std::unique_ptr<Instruction> ZeroInstructionFactory::createInstruction(uint16_t 
         case 0xE0:
             instructionPtr=std::make_unique<Cls>(machineCode);
             break;
+        case 0xEE:
+            instructionPtr=std::make_unique<Ret>(machineCode);
+            break;
         default:
             instructionPtr= nullptr;
     }
