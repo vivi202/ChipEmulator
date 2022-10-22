@@ -13,8 +13,7 @@ Window::Window(){
     sdlWindow = SDL_CreateWindow(title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
                                  width,height,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if(sdlWindow){
-        sdlRenderer= SDL_CreateRenderer(sdlWindow,-1,SDL_RENDERER_ACCELERATED |
-        SDL_RENDERER_PRESENTVSYNC);
+        sdlRenderer= SDL_CreateRenderer(sdlWindow,-1,SDL_RENDERER_ACCELERATED);
         if(sdlRenderer){
             running= true;
         }else{

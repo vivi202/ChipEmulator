@@ -19,7 +19,12 @@ void RenderEngine::drawAll() {
 }
 
 void RenderEngine::render() {
-    SDL_RenderClear(Window::getInstance()->getRenderer());
-    drawAll();
-    SDL_RenderPresent(Window::getInstance()->getRenderer());
+    currentTime=SDL_GetTicks();
+    if(currentTime-lastRender > RenderPeriod){
+        SDL_RenderClear(Window::getInstance()->getRenderer());
+        drawAll();
+        SDL_RenderPresent(Window::getInstance()->getRenderer());
+        lastRender=currentTime;
+    }
+
 }

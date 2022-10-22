@@ -14,11 +14,13 @@ public:
     ~SubnVxVy() override = default;
 
     void execute(ChipCore &core) override {
+        uint8_t flag;
         if(core.registerBank[y] > core.registerBank[x])
-            core.registerBank[0xF]=1;
+            flag=1;
         else
-            core.registerBank[0xF]=0;
+            flag=0;
         core.registerBank[x]=core.registerBank[y] - core.registerBank[x];
+       core.registerBank[0xF]=flag;
     }
 
     std::string toAsm() override {

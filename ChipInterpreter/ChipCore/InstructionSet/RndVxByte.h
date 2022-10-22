@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_RNDVXBYTE_H
 #define CHIPEMULATOR_RNDVXBYTE_H
 #include "Instruction.h"
-//TODO implement RndVxByte
 class RndVxByte : public Instruction{
 public:
 
@@ -14,7 +13,7 @@ public:
     ~RndVxByte() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank[x]=core.getRandomByte() & kk;
     }
 
     std::string toAsm() override {

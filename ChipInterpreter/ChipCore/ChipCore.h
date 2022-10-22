@@ -10,6 +10,8 @@
 #include "Display.h"
 #include "Keyboard.h"
 #include "ResettableComponent.h"
+#include <random>
+#include <cmath>
 class ChipCore: public ResettableComponent{
 public:
     ChipCore(Display *display,Keyboard *keyboard):display(display),keyboard(keyboard){
@@ -32,10 +34,13 @@ public:
     Display* display;
     //KEYBOARD
     Keyboard* keyboard;
-
     void reset() override;
+    uint8_t getRandomByte();
 private:
     //RNG and other things
+    std::random_device rd;
+    std::uniform_int_distribution<uint8_t> dist=std::uniform_int_distribution<uint8_t>(0,255);
+    std::default_random_engine RandomEngine=std::default_random_engine(rd());
 };
 
 

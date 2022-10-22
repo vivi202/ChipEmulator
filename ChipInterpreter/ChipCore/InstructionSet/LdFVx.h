@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_LDFVX_H
 #define CHIPEMULATOR_LDFVX_H
 #include "Instruction.h"
-//TODO implement LdFVx
 class LdFVx : public Instruction{
 public:
     explicit LdFVx(uint16_t machineCode): Instruction(machineCode){};
@@ -13,7 +12,7 @@ public:
     ~LdFVx() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank.iReg=Ram::FONT_START_ADDRESS + core.registerBank[x]*Ram::FONT_OFFSET;
     }
 
     std::string toAsm() override {

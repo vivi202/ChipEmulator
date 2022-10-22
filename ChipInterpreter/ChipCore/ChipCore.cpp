@@ -17,3 +17,7 @@ void ChipCore::reset() {
     while (!callStack.empty())
         callStack.pop();
 }
+
+uint8_t ChipCore::getRandomByte() {
+    return dist(RandomEngine);
+}

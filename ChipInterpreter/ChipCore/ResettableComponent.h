@@ -6,6 +6,8 @@
 #define CHIPEMULATOR_RESETTABLECOMPONENT_H
 class ResettableComponent{
 public:
+    virtual ~ResettableComponent()=default;
+
     virtual void reset()=0;
 };
 #endif //CHIPEMULATOR_RESETTABLECOMPONENT_H

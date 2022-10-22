@@ -18,15 +18,18 @@ public:
         //wrap coordinates using modulo operator.
         startXCoord= startXCoord % core.display->getWidth();
         startYCoord= startYCoord % core.display->getHeight();
+        uint8_t flag=0;
         for (int  spriteIndex = 0;  spriteIndex < spriteSize &&
             startYCoord + spriteIndex < core.display->getHeight();spriteIndex++) {
             //get sprite byte from ram.
             uint8_t spriteByte=core.ram.read(startAddress+spriteIndex);
             for (int currentPixelIndex = 0; currentPixelIndex < 8 &&
                                             startXCoord + currentPixelIndex < core.display->getWidth(); currentPixelIndex++) {
+
                 uint8_t spritePixel= (spriteByte >> (7 - currentPixelIndex)) & 0x01;
-                uint8_t xoredPixel= spritePixel ^ core.display->readPixel(startXCoord + currentPixelIndex,
-                                                                          startYCoord + spriteIndex);
+                uint8_t oldPixel=core.display->readPixel(startXCoord + currentPixelIndex,
+                                                         startYCoord + spriteIndex);
+                uint8_t xoredPixel= spritePixel ^ oldPixel;
 
                 core.display->writePixel(startXCoord + currentPixelIndex,
                                          startYCoord + spriteIndex
@@ -41,10 +44,10 @@ public:
                  *     1       |    1       |       0
                  *-------------------------------------------
                  */
-                core.registerBank[0xF]=spritePixel & !xoredPixel;
-
+                flag|=spritePixel & !xoredPixel;
             }
         }
+        core.registerBank[0xF]=flag;
         core.display->notify();
     }
 

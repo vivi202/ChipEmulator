@@ -14,8 +14,9 @@ public:
     ~ShrVxVy() override = default;
 
     void execute(ChipCore &core) override {
-        core.registerBank[0xF]=core.registerBank[x] & 0x01;//mask lsb
+        uint8_t flag=core.registerBank[x] & 0x01;//mask lsb
         core.registerBank[x]>>=1;
+        core.registerBank[0xF]=flag;
     }
 
     std::string toAsm() override {

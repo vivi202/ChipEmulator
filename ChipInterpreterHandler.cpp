@@ -21,7 +21,10 @@ void ChipInterpreterHandler::handleExecution() {
 }
 
 void ChipInterpreterHandler::handleEvents(SDL_Event &e) {
-
+    const uint8_t* state= SDL_GetKeyboardState(nullptr);
+    for (int chipKey = 0; chipKey < Keyboard::NUMBER_OF_KEYS; ++chipKey) {
+        keyboard.setKeyState(chipKey,state[keyBindings.getRemappedKey(chipKey)]);
+    }
 }
 
 void ChipInterpreterHandler::loadRom(Rom &rom) {
