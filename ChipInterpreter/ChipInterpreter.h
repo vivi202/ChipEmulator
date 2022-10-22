@@ -14,6 +14,9 @@ public:
     void cycle();
     void handleTimers();
     void loadProgramData(uint8_t* data,long programSize);
+    bool isWaitingForRelease();
+    void release();
+    bool isCoreHalted();
 private:
     InstructionDecoder instructionDecoder;
     std::unique_ptr<ChipCore> core;

@@ -19,8 +19,11 @@ public:
         for (key = 0,state= false; key < Keyboard::NUMBER_OF_KEYS && !state; ++key) {
             state=core.keyboard->getKeyState(key);
         }
-        if(state)
+        if(state){
             core.registerBank[x]=key-1;
+            core.waitingForRelease= true;
+            core.halted= true;
+        }
         else
             core.registerBank.pcReg-=2;
     }

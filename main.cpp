@@ -7,8 +7,8 @@ int main() {
     uint32_t pollPeriod=16;
     Window* window=Window::getInstance();
     RenderEngine engine;
-    Rom rom("Rom/chip8-test-suite.ch8");
-    ChipInterpreterHandler chipInterpreterHandler(900);
+    Rom rom("Rom/Games/br8kout.ch8");
+    ChipInterpreterHandler chipInterpreterHandler(500);
     chipInterpreterHandler.loadRom(rom);
     engine.addDrawable(&chipInterpreterHandler);
     while (window->isRunning()){

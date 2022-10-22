@@ -36,6 +36,8 @@ public:
     Keyboard* keyboard;
     void reset() override;
     uint8_t getRandomByte();
+    bool waitingForRelease= false;
+    bool halted= false;
 private:
     //RNG and other things
     std::random_device rd;

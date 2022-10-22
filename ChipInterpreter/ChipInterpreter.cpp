@@ -20,6 +20,8 @@ uint16_t ChipInterpreter::fetch() {
 }
 
 void ChipInterpreter::cycle() {
+    if(isCoreHalted())
+        return;
     //Fetch instruction
     uint16_t machineCode=fetch();
     //Decode instruction
@@ -43,6 +45,19 @@ void ChipInterpreter::loadProgramData(uint8_t *data, long programSize) {
     for (int i = 0; i < programSize; ++i) {
         core->ram.write(ChipCore::PROGRAM_START_ADDRESS + i,data[i]);
     }
+}
+
+bool ChipInterpreter::isWaitingForRelease() {
+    return core->waitingForRelease;
+}
+
+bool ChipInterpreter::isCoreHalted() {
+    return core->halted;
+}
+
+void ChipInterpreter::release() {
+    core->halted= false;
+    core->waitingForRelease= false;
 }
 
 

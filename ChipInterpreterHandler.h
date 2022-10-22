@@ -15,7 +15,7 @@
 class ChipInterpreterHandler : public Drawable{
 public:
     explicit ChipInterpreterHandler(int frequency){
-        executionPeriodMs=(1/(float)frequency) * (float)1000;
+        executionPeriodMs=(1/(float)frequency);
     };
     void loadRom(Rom& rom);
     void handleExecution();
@@ -27,11 +27,11 @@ private:
     DisplayTextureHandler textureHandler;
     SdlChipDisplay display=SdlChipDisplay(&textureHandler);
     ChipInterpreter interpreter=ChipInterpreter(&display,&keyboard);
-    uint64_t currentTime=SDL_GetTicks();
-    const uint32_t timerRefreshPeriod=1/(float)60 * (float)1000;
-    uint32_t lastExecution=0;
-    uint32_t lastTimerUpdate=0;
-    uint32_t executionPeriodMs;
+    uint64_t currentTime=SDL_GetPerformanceCounter();
+    float timerRefreshPeriod=1/(float)60;
+    uint64_t lastExecution=0;
+    uint64_t lastTimerUpdate=0;
+    float executionPeriodMs;
 };
 
 

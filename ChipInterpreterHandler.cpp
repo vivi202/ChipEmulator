@@ -8,12 +8,12 @@ void ChipInterpreterHandler::draw() {
 }
 
 void ChipInterpreterHandler::handleExecution() {
-    currentTime=SDL_GetTicks();
-    if(currentTime - lastExecution >= executionPeriodMs){
+    currentTime=SDL_GetPerformanceCounter();
+    if((currentTime - lastExecution)/(float)SDL_GetPerformanceFrequency() >= executionPeriodMs){
         interpreter.cycle();
         lastExecution=currentTime;
     }
-    if(currentTime - lastTimerUpdate >= timerRefreshPeriod){
+    if((currentTime - lastTimerUpdate)/(float)SDL_GetPerformanceFrequency() >= timerRefreshPeriod){
         interpreter.handleTimers();
         lastTimerUpdate=currentTime;
     }
@@ -21,6 +21,13 @@ void ChipInterpreterHandler::handleExecution() {
 }
 
 void ChipInterpreterHandler::handleEvents(SDL_Event &e) {
+    if(interpreter.isWaitingForRelease()){
+        switch (e.type) {
+            case SDL_KEYUP:
+                interpreter.release();
+                break;
+        }
+    }
     const uint8_t* state= SDL_GetKeyboardState(nullptr);
     for (int chipKey = 0; chipKey < Keyboard::NUMBER_OF_KEYS; ++chipKey) {
         keyboard.setKeyState(chipKey,state[keyBindings.getRemappedKey(chipKey)]);
