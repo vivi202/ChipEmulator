@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_LDBVX_H
 #define CHIPEMULATOR_LDBVX_H
 #include "Instruction.h"
-//TODO implement LdBVx
 class LdBVx : public Instruction{
 public:
 
@@ -14,7 +13,14 @@ public:
     ~LdBVx() override = default;
 
     void execute(ChipCore &core) override {
-
+        uint8_t number=core.registerBank[x];
+        uint8_t units=number % 10;
+        uint8_t tens= (number / 10) % 10;
+        uint8_t hundreds=(number / 100 ) % 10;
+        uint16_t address=core.registerBank.iReg;
+        core.ram.write(address+0,hundreds);
+        core.ram.write(address+1,tens);
+        core.ram.write(address+2,units);
     }
 
     std::string toAsm() override {

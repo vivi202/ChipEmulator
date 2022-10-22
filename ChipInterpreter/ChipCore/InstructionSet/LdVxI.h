@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_LDVXI_H
 #define CHIPEMULATOR_LDVXI_H
 #include "Instruction.h"
-//TODO implement LdVxI
 class LdVxI : public Instruction{
 public:
 
@@ -14,7 +13,10 @@ public:
     ~LdVxI() override = default;
 
     void execute(ChipCore &core) override {
-
+        uint16_t address=core.registerBank.iReg;
+        for (int offset = 0; offset <= x; ++offset) {
+            core.registerBank[offset]=core.ram.read(address+offset);
+        }
     }
 
     std::string toAsm() override {

@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_LDIVX_H
 #define CHIPEMULATOR_LDIVX_H
 #include "Instruction.h"
-//TODO implement LdIVx
 class LdIVx: public Instruction{
 public:
 
@@ -14,7 +13,10 @@ public:
     ~LdIVx() override = default;
 
     void execute(ChipCore &core) override {
-
+        uint16_t address=core.registerBank.iReg;
+        for (uint8_t offset = 0; offset <= x ; ++offset) {
+            core.ram.write(address+offset,core.registerBank[offset]);
+        }
     }
 
     std::string toAsm() override {

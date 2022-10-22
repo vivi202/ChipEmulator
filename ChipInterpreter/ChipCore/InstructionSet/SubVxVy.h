@@ -6,7 +6,7 @@
 #define CHIPEMULATOR_SUBVXVY_H
 #include "Instruction.h"
 
-//TODO implement SubVxVy
+
 class SubVxVy : public Instruction{
 public:
 
@@ -15,7 +15,11 @@ public:
     ~SubVxVy() override = default;
 
     void execute(ChipCore &core) override {
-
+        if(core.registerBank[x]>core.registerBank[y])
+            core.registerBank[0xF]=1;
+        else
+            core.registerBank[0xF]=0;
+        core.registerBank[x]-=core.registerBank[y];
     }
 
     std::string toAsm() override {

@@ -14,7 +14,8 @@ public:
     ~SknpVx() override = default;
 
     void execute(ChipCore &core) override {
-
+        if(!core.keyboard->getKeyState(core.registerBank[x]))
+            core.registerBank.pcReg+=2;
     }
 
     std::string toAsm() override {

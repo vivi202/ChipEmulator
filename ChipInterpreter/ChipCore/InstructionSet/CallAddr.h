@@ -6,7 +6,6 @@
 #define CHIPEMULATOR_CALLADDR_H
 
 #include "Instruction.h"
-//TODO Implement CallAddr
 class CallAddr: public Instruction{
 public:
     explicit CallAddr(uint16_t machineCode): Instruction(machineCode){};
@@ -14,7 +13,8 @@ public:
     ~CallAddr() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.callStack.push(core.registerBank.pcReg);
+        core.registerBank.pcReg=nnn;
     }
 
     std::string toAsm() override {

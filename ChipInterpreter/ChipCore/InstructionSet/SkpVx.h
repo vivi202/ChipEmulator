@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_SKPVX_H
 #define CHIPEMULATOR_SKPVX_H
 #include "Instruction.h"
-//TODO implement SkpVx
 class SkpVx :public Instruction{
 public:
     explicit SkpVx(uint16_t machineCode): Instruction(machineCode){};
@@ -13,7 +12,8 @@ public:
     ~SkpVx() override = default;
 
     void execute(ChipCore &core) override {
-
+        if(core.keyboard->getKeyState(core.registerBank[x]))
+            core.registerBank.pcReg+=2;
     }
 
     std::string toAsm() override {

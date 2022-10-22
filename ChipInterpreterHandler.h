@@ -12,7 +12,9 @@
 #include <fstream>
 class ChipInterpreterHandler : public Drawable{
 public:
-    explicit ChipInterpreterHandler(int frequency):frequency(frequency){};
+    explicit ChipInterpreterHandler(int frequency){
+        executionPeriodMs=1/frequency * (float)1000;
+    };
     void loadRom(Rom& rom);
     void handleExecution();
     void handleEvents(SDL_Event &e);
@@ -22,7 +24,11 @@ private:
     DisplayTextureHandler textureHandler;
     SdlChipDisplay display=SdlChipDisplay(&textureHandler);
     ChipInterpreter interpreter=ChipInterpreter(&display,&keyboard);
-    int frequency;
+    uint64_t currentTime=SDL_GetTicks();
+    const uint32_t timerRefreshPeriod=1/60 * (float)1000;
+    uint32_t lastExecution=0;
+    uint32_t lastTimerUpdate=0;
+    uint32_t executionPeriodMs;
 };
 
 

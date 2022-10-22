@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_SNEVXBYTE_H
 #define CHIPEMULATOR_SNEVXBYTE_H
 #include "Instruction.h"
-//TODO Implement SneVxByte
 class SneVxByte : public Instruction{
 public:
 
@@ -14,7 +13,8 @@ public:
     ~SneVxByte() override = default;
 
     void execute(ChipCore &core) override {
-
+        if(core.registerBank[x] != kk)
+            core.registerBank.pcReg+=2;
     }
 
     std::string toAsm() override {

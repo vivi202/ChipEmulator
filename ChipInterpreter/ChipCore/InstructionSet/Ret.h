@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_RET_H
 #define CHIPEMULATOR_RET_H
 #include "Instruction.h"
-//TODO Implement Ret
 class Ret : public Instruction{
 public:
 
@@ -14,7 +13,8 @@ public:
     ~Ret() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank.pcReg=core.callStack.top();
+        core.callStack.pop();
     }
 
     std::string toAsm() override {

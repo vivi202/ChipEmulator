@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_LDVXVY_H
 #define CHIPEMULATOR_LDVXVY_H
 #include "Instruction.h"
-//TODO implement LdVxVy
 class LdVxVy : public Instruction{
 public:
 
@@ -14,7 +13,7 @@ public:
     ~LdVxVy() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank[x]=core.registerBank[y];
     }
 
     std::string toAsm() override {

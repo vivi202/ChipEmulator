@@ -12,7 +12,8 @@ public:
     ~SneVxVy() override = default;
 
     void execute(ChipCore &core) override {
-
+        if(core.registerBank[x] != core.registerBank[y])
+            core.registerBank.pcReg+=2;
     }
 
     std::string toAsm() override {

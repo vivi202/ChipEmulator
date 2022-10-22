@@ -4,8 +4,8 @@
 int main() {
     Window* window=Window::getInstance();
     RenderEngine engine;
-    Rom rom("Rom/IBM Logo.ch8");
-    ChipInterpreterHandler chipInterpreterHandler(500);
+    Rom rom("Rom/test_opcode.ch8");
+    ChipInterpreterHandler chipInterpreterHandler(800);
     chipInterpreterHandler.loadRom(rom);
     engine.addDrawable(&chipInterpreterHandler);
     while (window->isRunning()){
@@ -17,7 +17,6 @@ int main() {
         chipInterpreterHandler.handleExecution();
         engine.render();
     }
-
     delete window;
     return 0;
 }

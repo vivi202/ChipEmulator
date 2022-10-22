@@ -5,7 +5,7 @@
 #ifndef CHIPEMULATOR_SEVXVY_H
 #define CHIPEMULATOR_SEVXVY_H
 #include "Instruction.h"
-//TODO Implement SeVxVy
+
 class SeVxVy : public Instruction{
 public:
 
@@ -14,7 +14,8 @@ public:
     ~SeVxVy() override = default;
 
     void execute(ChipCore &core) override {
-
+        if(core.registerBank[x] == core.registerBank[y])
+            core.registerBank.pcReg+=2;
     }
 
     std::string toAsm() override {

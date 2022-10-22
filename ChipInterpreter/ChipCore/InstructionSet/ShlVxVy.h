@@ -13,7 +13,8 @@ public:
     ~ShlVxVy() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank[0xF]=(core.registerBank[x] >> 7 );
+        core.registerBank[x]<<=1;
     }
 
     std::string toAsm() override {

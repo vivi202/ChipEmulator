@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_LDSTVX_H
 #define CHIPEMULATOR_LDSTVX_H
 #include "Instruction.h"
-//TODO implement LdStVx
 class LdStVx : public Instruction{
 public:
 
@@ -14,7 +13,7 @@ public:
     ~LdStVx() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank.sound=core.registerBank[x];
     }
 
     std::string toAsm() override {

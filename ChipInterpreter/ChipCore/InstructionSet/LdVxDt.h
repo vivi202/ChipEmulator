@@ -5,7 +5,6 @@
 #ifndef CHIPEMULATOR_LDVXDT_H
 #define CHIPEMULATOR_LDVXDT_H
 #include "Instruction.h"
-//TODO implement LdVxDt
 class LdVxDt : public Instruction{
 public:
 
@@ -14,7 +13,7 @@ public:
     ~LdVxDt() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank[x]=core.registerBank.delay;
     }
 
     std::string toAsm() override {

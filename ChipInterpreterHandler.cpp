@@ -8,7 +8,16 @@ void ChipInterpreterHandler::draw() {
 }
 
 void ChipInterpreterHandler::handleExecution() {
-    interpreter.cycle();
+    currentTime=SDL_GetTicks();
+    if(currentTime - lastExecution >= executionPeriodMs){
+        interpreter.cycle();
+        lastExecution=currentTime;
+    }
+    if(currentTime - lastTimerUpdate >= timerRefreshPeriod){
+        interpreter.handleTimers();
+        lastTimerUpdate=currentTime;
+    }
+
 }
 
 void ChipInterpreterHandler::handleEvents(SDL_Event &e) {

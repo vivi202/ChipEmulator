@@ -5,7 +5,7 @@
 #ifndef CHIPEMULATOR_ORVXVY_H
 #define CHIPEMULATOR_ORVXVY_H
 #include "Instruction.h"
-//TODO implement OrVxVy
+
 class OrVxVy : public Instruction{
 public:
 
@@ -14,7 +14,7 @@ public:
     ~OrVxVy() override = default;
 
     void execute(ChipCore &core) override {
-
+        core.registerBank[x]|=core.registerBank[y];
     }
 
     std::string toAsm() override {

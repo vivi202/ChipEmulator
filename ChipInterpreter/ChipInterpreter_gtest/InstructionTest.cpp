@@ -210,6 +210,7 @@ TEST_F(InstructionTests,SubnVxVy){
     ASSERT_EQ(core.registerBank[0xF],0);
     ASSERT_EQ(core.registerBank[0x6],251);
     core.registerBank[6]=2;
+    subnVxVyInstruction->execute(core);
     ASSERT_EQ(core.registerBank[0xF],1);
     ASSERT_EQ(core.registerBank[0x6],3);
 }
@@ -323,26 +324,27 @@ TEST_F(InstructionTests,LdBVx){
 
 TEST_F(InstructionTests,LdIVx){
     uint16_t startAddress=0x300;
-    for (int regIndex = 0; regIndex < 0xF; ++regIndex) {
+    for (int regIndex = 0; regIndex < RegisterBank::GpRegisterNum; ++regIndex) {
         core.registerBank[regIndex]=regIndex;
     }
     core.registerBank.iReg=startAddress;
-    auto ldIVxInstruction=std::make_unique<LdIVx>(0xF355);
+    auto ldIVxInstruction=std::make_unique<LdIVx>(0xFF55);
     ldIVxInstruction->execute(core);
-    for (int addressOffset = 0; addressOffset < 0xF; ++addressOffset) {
+    for (int addressOffset = 0; addressOffset < RegisterBank::GpRegisterNum; ++addressOffset) {
         ASSERT_EQ(core.ram.read(startAddress+addressOffset),addressOffset);
     }
 }
 
 TEST_F(InstructionTests,LdVxI){
     uint16_t startAddress=0x300;
-    for (int offset = 0; offset < 0xF; ++offset) {
+    for (int offset = 0; offset < RegisterBank::GpRegisterNum; ++offset) {
         core.ram.write(startAddress+offset,offset);
     }
-    auto ldVxIInstruction = std::make_unique<LdVxI>(0xF065);
+    core.registerBank.iReg=startAddress;
+    auto ldVxIInstruction = std::make_unique<LdVxI>(0xFF65);
     ldVxIInstruction->execute(core);
 
-    for (int regIndex = 0; regIndex < 0xF; ++regIndex) {
+    for (int regIndex = 0; regIndex < RegisterBank::GpRegisterNum; ++regIndex) {
         ASSERT_EQ(core.registerBank[regIndex],core.ram.read(startAddress+regIndex));
     }
 }
