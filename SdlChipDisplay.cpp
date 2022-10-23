@@ -5,10 +5,6 @@
 #include "SdlChipDisplay.h"
 
 
-Display *SdlChipDisplay::clone() const {
-    //TODO implement clone method
-    return nullptr;
-}
 
 bool SdlChipDisplay::readPixel(int x, int y)const  {
     return frameBuff[y*width + x]==pixelColor;

@@ -11,7 +11,8 @@
 #include <list>
 class SoundEngine {
 public:
-    SoundEngine();
+    static SoundEngine* getInstance();
+    static const int samplePerSecond=48000;
     void startPlaying() const;
     void stopPlaying() const;
     virtual ~SoundEngine();
@@ -19,11 +20,12 @@ public:
     void addSynth(WaveTableSynth* s,float wantedFreq);
     void removeSynth(WaveTableSynth* s);
 private:
+    SoundEngine();
+    static SoundEngine* instance;
     void audioCallback(Uint8 *stream, int len);
     std::list<WaveTableSynth*>  synthesizers;
     SDL_AudioSpec want{}, have{};
     SDL_AudioDeviceID audioDevice;
-    const int samplePerSecond=48000;
     const SDL_AudioFormat audioFormat = AUDIO_S16SYS;
     const int audioChannels=2;
     const int sampleBufferSize=1024;

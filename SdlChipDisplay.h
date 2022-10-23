@@ -13,11 +13,9 @@ class SdlChipDisplay : public Display{
 public:
     static const int SDL_CHIP_DISPLAY_WIDTH=64;
     static const int SDL_CHIP_DISPLAY_HEIGHT=32;
-    explicit SdlChipDisplay(DisplayTextureHandler* textureHandler,uint32_t backgroundColor=0x0,uint32_t pixelColor=0x0FFFFFF);
+    explicit SdlChipDisplay(DisplayTextureHandler* textureHandler,uint32_t backgroundColor=0x00336600,uint32_t pixelColor=0x0066ff33);
 
     ~SdlChipDisplay() override;
-
-    Display *clone() const override;
 
     bool readPixel(int x, int y) const override;
 

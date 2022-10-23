@@ -3,17 +3,18 @@
 //
 
 #include "ChipInterpreterHandler.h"
+#include "iostream"
 void ChipInterpreterHandler::draw() {
     textureHandler.draw();
 }
 
 void ChipInterpreterHandler::handleExecution() {
     currentTime=SDL_GetPerformanceCounter();
-    if((currentTime - lastExecution)/(float)SDL_GetPerformanceFrequency() >= executionPeriodMs){
+    if((float)(currentTime - lastExecution)/(float)SDL_GetPerformanceFrequency() >= executionPeriodMs){
         interpreter.cycle();
         lastExecution=currentTime;
     }
-    if((currentTime - lastTimerUpdate)/(float)SDL_GetPerformanceFrequency() >= timerRefreshPeriod){
+    if((float)(currentTime - lastTimerUpdate)/(float)SDL_GetPerformanceFrequency() >= timerRefreshPeriod){
         interpreter.handleTimers();
         lastTimerUpdate=currentTime;
     }
@@ -46,4 +47,14 @@ void ChipInterpreterHandler::loadRom(Rom &rom) {
         interpreter.loadProgramData(reinterpret_cast<uint8_t*>(buff.get()),size);
         romFile.close();
     }
+}
+
+void ChipInterpreterHandler::startSound() {
+std::cout<<"playingSound"<<"\n";
+SoundEngine::getInstance()->startPlaying();
+}
+
+void ChipInterpreterHandler::stopSound() {
+    SoundEngine::getInstance()->stopPlaying();
+    std::cout<<"notPlayingSound"<<"\n";
 }

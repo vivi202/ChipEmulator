@@ -4,6 +4,7 @@
 
 #include "SoundEngine.h"
 #include "iostream"
+SoundEngine* SoundEngine::instance= nullptr;
 SoundEngine::SoundEngine() {
     if(SDL_Init(SDL_INIT_AUDIO | SDL_INIT_TIMER) != 0){
         SDL_Log("Unable to initialize SDL AudioSystem: %s", SDL_GetError());
@@ -60,6 +61,13 @@ void SoundEngine::audioCallback(Uint8 *stream, int len) {
         signedStream[i]=(int16_t)(32767.0f * left / (float)synthesizers.size());
         signedStream[i+1]=(int16_t)(32767.0f * left / (float)synthesizers.size());;
     }
+}
+
+SoundEngine *SoundEngine::getInstance() {
+    if(!instance){
+        instance= new SoundEngine;
+    }
+    return instance;
 }
 
 

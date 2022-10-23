@@ -7,9 +7,10 @@
 
 #include "InstructionDecoder.h"
 #include "ResettableComponent.h"
+#include "SoundObserver.h"
 class ChipInterpreter : public ResettableComponent{
 public:
-    ChipInterpreter(Display* display, Keyboard* keyboard);
+    ChipInterpreter(Display* display, Keyboard* keyboard,SoundObserver* soundObserver);
     void reset() override;
     void cycle();
     void handleTimers();
@@ -20,6 +21,8 @@ public:
 private:
     InstructionDecoder instructionDecoder;
     std::unique_ptr<ChipCore> core;
+    SoundObserver* soundObserver;
+    bool isPlayingSound= false;
     uint16_t fetch();
 };
 

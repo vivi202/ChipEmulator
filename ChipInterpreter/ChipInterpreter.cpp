@@ -8,8 +8,9 @@ void ChipInterpreter::reset() {
     core->reset();
 }
 
-ChipInterpreter::ChipInterpreter(Display *display, Keyboard *keyboard){
+ChipInterpreter::ChipInterpreter(Display *display, Keyboard *keyboard,SoundObserver* soundObserver){
     core=std::make_unique<ChipCore>(display,keyboard);
+    this->soundObserver=soundObserver;
 }
 
 uint16_t ChipInterpreter::fetch() {
@@ -36,8 +37,21 @@ void ChipInterpreter::cycle() {
 void ChipInterpreter::handleTimers() {
     if(core->registerBank.delay > 0)
         core->registerBank.delay-=1;
-    if(core->registerBank.sound > 0)
+
+    if(core->registerBank.sound > 0){
         core->registerBank.sound-=1;
+    }
+
+    if(core->registerBank.sound==0 && isPlayingSound){
+        soundObserver->stopSound();
+        isPlayingSound= false;
+    }
+    if(core->registerBank.sound > 0 && !isPlayingSound){
+        soundObserver->startSound();
+        isPlayingSound= true;
+    }
+    std::cout<<(int)core->registerBank.sound<<"\n";
+
 }
 
 void ChipInterpreter::loadProgramData(uint8_t *data, long programSize) {

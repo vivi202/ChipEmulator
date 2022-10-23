@@ -2,7 +2,7 @@
 #include "RenderEngine.h"
 #include "ChipInterpreterHandler.h"
 #include "SoundEngine.h"
-#include "Synth/SineWaveTableSynth.h"
+#include "Synth/SquareWaveTableSynth.h"
 int main() {
     uint32_t lastPoll=0;
     uint32_t currentTime;
@@ -10,13 +10,13 @@ int main() {
     Window* window=Window::getInstance();
     RenderEngine engine;
     //SoundEngine
-    SoundEngine soundEngine;
-    SineWaveTableSynth synth(48000);
+    SoundEngine* soundEngine=SoundEngine::getInstance();
+     SquareWaveTableSynth synth(SoundEngine::samplePerSecond);
     synth.setAmplitude(0.5);
-    soundEngine.addSynth(&synth,  440);
+    soundEngine->addSynth(&synth,  440);
 
     Rom rom("Rom/TestRoms/chip8-test-suite.ch8");
-    ChipInterpreterHandler chipInterpreterHandler(1000);
+    ChipInterpreterHandler chipInterpreterHandler(800);
     chipInterpreterHandler.loadRom(rom);
     engine.addDrawable(&chipInterpreterHandler);
     while (window->isRunning()){
@@ -32,6 +32,7 @@ int main() {
         chipInterpreterHandler.handleExecution();
         engine.render();
     }
+    delete soundEngine;
     delete window;
     return 0;
 }
