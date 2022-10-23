@@ -16,7 +16,7 @@ public:
         core.registerBank.iReg+=core.registerBank[x];
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 };

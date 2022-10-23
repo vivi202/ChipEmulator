@@ -10,7 +10,7 @@ Display *SdlChipDisplay::clone() const {
     return nullptr;
 }
 
-bool SdlChipDisplay::readPixel(int x, int y) {
+bool SdlChipDisplay::readPixel(int x, int y)const  {
     return frameBuff[y*width + x]==pixelColor;
 }
 

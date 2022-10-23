@@ -1,14 +1,22 @@
 #include "Window.h"
 #include "RenderEngine.h"
 #include "ChipInterpreterHandler.h"
+#include "SoundEngine.h"
+#include "Synth/SineWaveTableSynth.h"
 int main() {
     uint32_t lastPoll=0;
     uint32_t currentTime;
-    uint32_t pollPeriod=16;
+    uint32_t pollPeriod=5;
     Window* window=Window::getInstance();
     RenderEngine engine;
-    Rom rom("Rom/Games/br8kout.ch8");
-    ChipInterpreterHandler chipInterpreterHandler(500);
+    //SoundEngine
+    SoundEngine soundEngine;
+    SineWaveTableSynth synth(48000);
+    synth.setAmplitude(0.5);
+    soundEngine.addSynth(&synth,  440);
+
+    Rom rom("Rom/TestRoms/chip8-test-suite.ch8");
+    ChipInterpreterHandler chipInterpreterHandler(1000);
     chipInterpreterHandler.loadRom(rom);
     engine.addDrawable(&chipInterpreterHandler);
     while (window->isRunning()){

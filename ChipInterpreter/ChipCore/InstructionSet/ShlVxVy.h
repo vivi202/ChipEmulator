@@ -18,7 +18,7 @@ public:
         core.registerBank[0xF]=flag;
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 };

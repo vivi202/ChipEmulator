@@ -10,11 +10,11 @@ class Display: public ResettableComponent{
 public:
     Display(int width,int height):width(width),height(height){};
 
-    virtual ~Display() = default;
+    ~Display() override = default;
 
     virtual Display* clone() const =0;
 
-    virtual bool readPixel(int x,int y)=0;
+    virtual bool readPixel(int x,int y)const =0;
     virtual void writePixel(int x,int y,bool value)=0;
     virtual void notify()=0;
 

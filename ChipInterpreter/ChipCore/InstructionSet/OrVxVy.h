@@ -17,7 +17,7 @@ public:
         core.registerBank[x]|=core.registerBank[y];
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 };

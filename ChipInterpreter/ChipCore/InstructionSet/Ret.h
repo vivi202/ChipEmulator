@@ -17,7 +17,7 @@ public:
         core.callStack.pop();
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 };

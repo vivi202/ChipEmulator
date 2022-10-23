@@ -13,7 +13,6 @@ void ChipCore::reset() {
         display->reset();
     if(keyboard)
         keyboard->reset();
-    //TODO check if there is a better way to clear the stack.
     while (!callStack.empty())
         callStack.pop();
 }

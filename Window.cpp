@@ -9,6 +9,7 @@ Window* Window::instance= nullptr;
 Window::Window(){
     if(SDL_Init(SDL_INIT_VIDEO) != 0){
         SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
+        exit(1);
     }
     sdlWindow = SDL_CreateWindow(title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
                                  width,height,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);

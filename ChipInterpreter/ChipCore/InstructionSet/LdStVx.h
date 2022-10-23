@@ -16,7 +16,7 @@ public:
         core.registerBank.sound=core.registerBank[x];
     }
 
-    std::string toAsm() override {
+    std::string toAsm() const override {
         return {""};
     }
 };

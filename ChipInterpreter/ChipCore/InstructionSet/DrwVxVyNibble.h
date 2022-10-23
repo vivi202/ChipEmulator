@@ -51,7 +51,7 @@ public:
         core.display->notify();
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 

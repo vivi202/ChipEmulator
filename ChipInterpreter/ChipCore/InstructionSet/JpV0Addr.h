@@ -16,7 +16,7 @@ public:
         core.registerBank.pcReg=nnn+core.registerBank[0];
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 };

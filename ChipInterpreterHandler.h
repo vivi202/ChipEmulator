@@ -11,7 +11,6 @@
 #include "Rom.h"
 #include "KeyBindings.h"
 #include <fstream>
-//TODO use high resolution timer.
 class ChipInterpreterHandler : public Drawable{
 public:
     explicit ChipInterpreterHandler(int frequency){

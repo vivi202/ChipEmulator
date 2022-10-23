@@ -47,11 +47,11 @@ void ChipInterpreter::loadProgramData(uint8_t *data, long programSize) {
     }
 }
 
-bool ChipInterpreter::isWaitingForRelease() {
+bool ChipInterpreter::isWaitingForRelease()const {
     return core->waitingForRelease;
 }
 
-bool ChipInterpreter::isCoreHalted() {
+bool ChipInterpreter::isCoreHalted() const{
     return core->halted;
 }
 

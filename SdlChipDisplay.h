@@ -19,7 +19,7 @@ public:
 
     Display *clone() const override;
 
-    bool readPixel(int x, int y) override;
+    bool readPixel(int x, int y) const override;
 
     void writePixel(int x, int y, bool value) override;
 

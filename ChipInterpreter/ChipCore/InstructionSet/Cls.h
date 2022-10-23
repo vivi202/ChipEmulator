@@ -13,7 +13,7 @@ public:
         core.display->reset();
     }
 
-    std::string toAsm() override {
+    std::string toAsm() const override {
         return {"CLS"};
     }
 };

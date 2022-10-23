@@ -20,7 +20,7 @@ public:
         kk  = getKk(machineCode);
     };
     virtual void execute(ChipCore& core)=0;
-    virtual std::string toAsm()=0;
+    virtual std::string toAsm()const =0;
 protected:
     uint16_t nnn;
     uint8_t n;

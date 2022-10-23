@@ -14,7 +14,7 @@ public:
         core.registerBank[x]+=kk;
     }
 
-    std::string toAsm() override {
+    std::string toAsm() const override {
         return {""};
     }
 };

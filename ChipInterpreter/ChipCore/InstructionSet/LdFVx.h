@@ -15,7 +15,7 @@ public:
         core.registerBank.iReg=Ram::FONT_START_ADDRESS + core.registerBank[x]*Ram::FONT_OFFSET;
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 

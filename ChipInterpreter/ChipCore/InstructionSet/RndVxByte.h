@@ -16,7 +16,7 @@ public:
         core.registerBank[x]=core.getRandomByte() & kk;
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 };

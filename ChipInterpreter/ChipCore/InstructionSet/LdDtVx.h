@@ -15,7 +15,7 @@ public:
         core.registerBank.delay=core.registerBank[x];
     }
 
-    std::string toAsm() override {
+    std::string toAsm()const override {
         return {""};
     }
 };
