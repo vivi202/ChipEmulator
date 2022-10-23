@@ -11,10 +11,9 @@ int main() {
     RenderEngine engine;
     //SoundEngine
     SoundEngine* soundEngine=SoundEngine::getInstance();
-     SquareWaveTableSynth synth(SoundEngine::samplePerSecond);
+    SquareWaveTableSynth synth(SoundEngine::samplePerSecond);
     synth.setAmplitude(0.5);
     soundEngine->addSynth(&synth,  440);
-
     Rom rom("Rom/TestRoms/chip8-test-suite.ch8");
     ChipInterpreterHandler chipInterpreterHandler(800);
     chipInterpreterHandler.loadRom(rom);

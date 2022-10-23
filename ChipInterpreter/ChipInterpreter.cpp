@@ -43,15 +43,15 @@ void ChipInterpreter::handleTimers() {
     }
 
     if(core->registerBank.sound==0 && isPlayingSound){
-        soundObserver->stopSound();
+        if(soundObserver)
+            soundObserver->stopSound();
         isPlayingSound= false;
     }
     if(core->registerBank.sound > 0 && !isPlayingSound){
-        soundObserver->startSound();
+        if(soundObserver)
+            soundObserver->startSound();
         isPlayingSound= true;
     }
-    std::cout<<(int)core->registerBank.sound<<"\n";
-
 }
 
 void ChipInterpreter::loadProgramData(uint8_t *data, long programSize) {

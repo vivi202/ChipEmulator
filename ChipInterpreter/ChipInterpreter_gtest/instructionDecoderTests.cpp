@@ -102,7 +102,6 @@ TEST_F(InstructionDecoderTests, AddVxByteDecodingTest) {
 TEST_F(InstructionDecoderTests, LdVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x8000 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto ldVxVyInstruction=dynamic_cast<LdVxVy*>(decodedInst.get());
         ASSERT_NE(ldVxVyInstruction, nullptr);
@@ -111,7 +110,6 @@ TEST_F(InstructionDecoderTests, LdVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, OrVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x8001 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto orVxVyInstruction=dynamic_cast<OrVxVy*>(decodedInst.get());
         ASSERT_NE(orVxVyInstruction, nullptr);
@@ -120,7 +118,6 @@ TEST_F(InstructionDecoderTests, OrVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, AndVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x8002 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto andVxVyInstruction=dynamic_cast<AndVxVy*>(decodedInst.get());
         ASSERT_NE(andVxVyInstruction, nullptr);
@@ -130,7 +127,6 @@ TEST_F(InstructionDecoderTests, AndVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, XorVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x8003 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto xorVxVyInstruction=dynamic_cast<XorVxVy*>(decodedInst.get());
         ASSERT_NE(xorVxVyInstruction, nullptr);
@@ -140,7 +136,6 @@ TEST_F(InstructionDecoderTests, XorVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, AddVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x8004 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto addVxVyInstruction=dynamic_cast<AddVxVy*>(decodedInst.get());
         ASSERT_NE(addVxVyInstruction, nullptr);
@@ -150,7 +145,6 @@ TEST_F(InstructionDecoderTests, AddVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, SubVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x8005 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto subVxVyInstruction=dynamic_cast<SubVxVy*>(decodedInst.get());
         ASSERT_NE(subVxVyInstruction, nullptr);
@@ -160,7 +154,6 @@ TEST_F(InstructionDecoderTests, SubVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, ShrVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x8006 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto shrVxVyInstruction=dynamic_cast<ShrVxVy*>(decodedInst.get());
         ASSERT_NE(shrVxVyInstruction, nullptr);
@@ -170,7 +163,6 @@ TEST_F(InstructionDecoderTests, ShrVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, SubnVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x8007 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto subnVxVyInstruction=dynamic_cast<SubnVxVy*>(decodedInst.get());
         ASSERT_NE(subnVxVyInstruction, nullptr);
@@ -180,7 +172,6 @@ TEST_F(InstructionDecoderTests, SubnVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, ShlVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x800E | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto shlVxVyInstruction=dynamic_cast<ShlVxVy*>(decodedInst.get());
         ASSERT_NE(shlVxVyInstruction, nullptr);
@@ -190,7 +181,6 @@ TEST_F(InstructionDecoderTests, ShlVxVyDecodingTest) {
 TEST_F(InstructionDecoderTests, SneVxVyDecodingTest) {
     for (int i = 0x00; i <= 0xFF; ++i) {
         uint16_t machineCode=0x9000 | (i << 4);
-        std::cout<<std::hex<<machineCode<<"\n";
         auto decodedInst=decoder.decode(machineCode);
         auto sneVxVyInstruction=dynamic_cast<SneVxVy*>(decodedInst.get());
         ASSERT_NE(sneVxVyInstruction, nullptr);

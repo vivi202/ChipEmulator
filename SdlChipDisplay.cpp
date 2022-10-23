@@ -36,7 +36,8 @@ pixelColor(pixelColor),textureHandler(textureHandler){
 }
 
 void SdlChipDisplay::notifyTextureHandler() {
-    textureHandler->updateTexture(frameBuff);
+    if(textureHandler)
+        textureHandler->updateTexture(frameBuff);
 }
 
 void SdlChipDisplay::notify() {
