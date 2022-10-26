@@ -14,7 +14,7 @@ public:
 
     virtual bool readPixel(int x,int y)const =0;
     virtual void writePixel(int x,int y,bool value)=0;
-    virtual void notify()=0;
+    virtual void notifySpriteDrawn()=0;
 
     int getWidth() const {
         return width;

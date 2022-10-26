@@ -8,25 +8,26 @@
 #include "Instruction.h"
 class DrwVxVyNibble: public Instruction{
 public:
+    const int spriteWidth=8;
     explicit DrwVxVyNibble(uint16_t machineCode): Instruction(machineCode){};
 
     void execute(ChipCore &core) override {
         uint16_t startAddress=core.registerBank.iReg;//base address of sprite data.
-        uint8_t spriteSize=n;//size of sprite expressed in bytes
+        uint8_t spriteHeight=n;//height of sprite
         uint8_t startXCoord=core.registerBank[x];
         uint8_t startYCoord=core.registerBank[y];
         //wrap coordinates using modulo operator.
         startXCoord= startXCoord % core.display->getWidth();
         startYCoord= startYCoord % core.display->getHeight();
         uint8_t flag=0;
-        for (int  spriteIndex = 0;  spriteIndex < spriteSize &&
+        for (int  spriteIndex = 0; spriteIndex < spriteHeight &&
             startYCoord + spriteIndex < core.display->getHeight();spriteIndex++) {
             //get sprite byte from ram.
             uint8_t spriteByte=core.ram.read(startAddress+spriteIndex);
-            for (int currentPixelIndex = 0; currentPixelIndex < 8 &&
+            for (int currentPixelIndex = 0; currentPixelIndex < spriteWidth &&
                                             startXCoord + currentPixelIndex < core.display->getWidth(); currentPixelIndex++) {
 
-                uint8_t spritePixel= (spriteByte >> (7 - currentPixelIndex)) & 0x01;
+                uint8_t spritePixel= (spriteByte >> ((spriteWidth-1) - currentPixelIndex)) & 0x01;
                 uint8_t oldPixel=core.display->readPixel(startXCoord + currentPixelIndex,
                                                          startYCoord + spriteIndex);
                 uint8_t xoredPixel= spritePixel ^ oldPixel;
@@ -48,7 +49,7 @@ public:
             }
         }
         core.registerBank[0xF]=flag;
-        core.display->notify();
+        core.display->notifySpriteDrawn();
     }
 
     std::string toAsm()const override {

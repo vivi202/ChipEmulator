@@ -15,7 +15,7 @@ int main() {
     synth.setAmplitude(0.5);
     soundEngine->addSynth(&synth,  440);
     Rom rom("Rom/TestRoms/chip8-test-suite.ch8");
-    ChipInterpreterHandler chipInterpreterHandler(800);
+    ChipInterpreterHandler chipInterpreterHandler(500);
     chipInterpreterHandler.loadRom(rom);
     engine.addDrawable(&chipInterpreterHandler);
     while (window->isRunning()){

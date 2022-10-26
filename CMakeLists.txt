@@ -8,5 +8,7 @@ find_package(SDL2 REQUIRED)
 include_directories(ChipInterpreter ChipInterpreter/ChipCore ${SDL2_INCLUDE_DIRS})
 add_executable(ChipEmulator main.cpp Window.cpp Window.h SdlChipDisplay.cpp SdlChipDisplay.h DisplayTextureHandler.cpp
         DisplayTextureHandler.h Drawable.h RenderEngine.cpp RenderEngine.h ChipInterpreterHandler.cpp
-        ChipInterpreterHandler.h KeyBindings.cpp KeyBindings.h SoundEngine.cpp SoundEngine.h Synth/WaveTableSynth.h Synth/SineWaveTableSynth.cpp Synth/SineWaveTableSynth.h Synth/SquareWaveTableSynth.cpp Synth/SquareWaveTableSynth.h)
+        ChipInterpreterHandler.h KeyBindings.cpp KeyBindings.h SoundEngine.cpp SoundEngine.h Synth/WaveTableSynth.h
+        Synth/SineWaveTableSynth.cpp Synth/SineWaveTableSynth.h Synth/SquareWaveTableSynth.cpp
+        Synth/SquareWaveTableSynth.h)
 target_link_libraries(ChipEmulator ${SDL2_LIBRARIES} ChipInterpreter)

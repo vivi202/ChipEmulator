@@ -4,12 +4,12 @@
 
 #ifndef CHIPEMULATOR_CHIPCORE_H
 #define CHIPEMULATOR_CHIPCORE_H
-#include <stack>
 #include "RegisterBank.h"
 #include "Ram.h"
 #include "Display.h"
 #include "Keyboard.h"
 #include "ResettableComponent.h"
+#include <stack>
 #include <random>
 #include <cmath>
 class ChipCore: public ResettableComponent{

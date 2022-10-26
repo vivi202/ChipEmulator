@@ -5,7 +5,7 @@
 #include "SineWaveTableSynth.h"
 
 #include <cmath>
-#include "iostream"
+
 
 void SineWaveTableSynth::generateTable(int nSamples) {
     table.resize(nSamples);

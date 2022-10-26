@@ -20,7 +20,7 @@ void SdlChipDisplay::writePixel(int x, int y, bool value) {
 
 void SdlChipDisplay::reset() {
     std::fill(frameBuff,frameBuff+(width*height),backgroundColor);
-    notifyTextureHandler();
+    notifySpriteDrawn();
 }
 
 SdlChipDisplay::~SdlChipDisplay() {
@@ -35,11 +35,9 @@ pixelColor(pixelColor),textureHandler(textureHandler){
     std::fill(frameBuff,frameBuff+(width*height),backgroundColor);
 }
 
-void SdlChipDisplay::notifyTextureHandler() {
+
+void SdlChipDisplay::notifySpriteDrawn() {
     if(textureHandler)
         textureHandler->updateTexture(frameBuff);
 }
 
-void SdlChipDisplay::notify() {
-    notifyTextureHandler();
-}

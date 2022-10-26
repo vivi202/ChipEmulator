@@ -23,9 +23,7 @@ public:
 
     void reset() override;
 
-    void notify() override;
-
-    void notifyTextureHandler();
+    void notifySpriteDrawn() override;
 private:
     uint32_t *frameBuff;
     uint32_t backgroundColor;

@@ -4,7 +4,6 @@
 
 #include "DisplayTextureHandler.h"
 
-
 void DisplayTextureHandler::draw() {
     SDL_RenderCopy(Window::getInstance()->getRenderer(),texture, nullptr, nullptr);
 }

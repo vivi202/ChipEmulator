@@ -3,7 +3,7 @@
 //
 
 #include "ChipInterpreterHandler.h"
-#include "iostream"
+
 void ChipInterpreterHandler::draw() {
     textureHandler.draw();
 }
@@ -50,11 +50,9 @@ void ChipInterpreterHandler::loadRom(Rom &rom) {
 }
 
 void ChipInterpreterHandler::startSound() {
-std::cout<<"playingSound"<<"\n";
 SoundEngine::getInstance()->startPlaying();
 }
 
 void ChipInterpreterHandler::stopSound() {
     SoundEngine::getInstance()->stopPlaying();
-    std::cout<<"notPlayingSound"<<"\n";
 }
