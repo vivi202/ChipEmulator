@@ -1,7 +1,11 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.22)
 project(ChipEmulator)
 
 set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_subdirectory(ChipInterpreter)
 find_package(SDL2 REQUIRED)
@@ -12,3 +16,5 @@ add_executable(ChipEmulator main.cpp Window.cpp Window.h SdlChipDisplay.cpp SdlC
         Synth/SineWaveTableSynth.cpp Synth/SineWaveTableSynth.h Synth/SquareWaveTableSynth.cpp
         Synth/SquareWaveTableSynth.h)
 target_link_libraries(ChipEmulator ${SDL2_LIBRARIES} ChipInterpreter)
+enable_testing()
+add_test(NAME interpreterTest COMMAND ChipInterpreter_test_run)
