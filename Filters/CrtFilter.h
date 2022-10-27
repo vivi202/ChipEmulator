@@ -18,8 +18,8 @@ public:
     void draw() override;
 
 private:
-    int scanLineOpacity = 20;
-    int crossingScanLineOpacity = 35;
+    int scanLineOpacity = 15;
+    int crossingScanLineOpacity = 45;
     int scanLinesDensity = 4;
     SDL_Texture* texture;
     void generateScanLines();
