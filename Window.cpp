@@ -14,7 +14,7 @@ Window::Window(){
     sdlWindow = SDL_CreateWindow(title.c_str(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,
                                  width,height,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if(sdlWindow){
-        sdlRenderer= SDL_CreateRenderer(sdlWindow,-1,SDL_RENDERER_ACCELERATED);
+        sdlRenderer= SDL_CreateRenderer(sdlWindow,-1,SDL_RENDERER_ACCELERATED );
         if(sdlRenderer){
             running= true;
         }else{
@@ -56,5 +56,21 @@ void Window::events(SDL_Event& e) {
             quit();
     }
 
+}
+
+int Window::getWidth() const {
+    int w;
+    SDL_GetWindowSize(sdlWindow,&w, nullptr);
+    return w;
+}
+
+int Window::getHeight() const {
+    int h;
+    SDL_GetWindowSize(sdlWindow, nullptr,&h);
+    return h;
+}
+
+SDL_Window *Window::getSdlWindow() {
+    return sdlWindow;
 }
 

@@ -11,6 +11,7 @@ class Window {
 public:
     static Window* getInstance();
     SDL_Renderer* getRenderer();
+    SDL_Window* getSdlWindow();
     ~Window();
     void quit();
     bool isRunning() const;
@@ -22,6 +23,12 @@ private:
     const std::string title="ChipEmulator";
     int width=1280;
     int height=720;
+public:
+    int getWidth() const;
+
+    int getHeight() const;
+
+private:
     SDL_Window *sdlWindow;
     SDL_Renderer* sdlRenderer;
 };

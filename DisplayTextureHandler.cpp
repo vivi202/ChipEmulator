@@ -13,7 +13,7 @@ DisplayTextureHandler::~DisplayTextureHandler() {
 }
 
 DisplayTextureHandler::DisplayTextureHandler() {
-    texture= SDL_CreateTexture(Window::getInstance()->getRenderer(),SDL_PIXELFORMAT_RGB888,
+    texture= SDL_CreateTexture(Window::getInstance()->getRenderer(),SDL_PIXELFORMAT_ARGB8888,
                                SDL_TEXTUREACCESS_STREAMING,SdlChipDisplay::SDL_CHIP_DISPLAY_WIDTH,
                                SdlChipDisplay::SDL_CHIP_DISPLAY_HEIGHT);
 
@@ -25,7 +25,7 @@ void DisplayTextureHandler::updateTexture(const uint32_t *frameBuff) {
     SDL_LockTexture(texture, nullptr,(void **)&pixels,&pitch);
     //Do things on pixel;
     for (int y = 0; y < SdlChipDisplay::SDL_CHIP_DISPLAY_HEIGHT; ++y) {
-        for (int x = 0;  x< SdlChipDisplay::SDL_CHIP_DISPLAY_WIDTH ; ++x) {
+        for (int x = 0;  x < SdlChipDisplay::SDL_CHIP_DISPLAY_WIDTH ; ++x) {
             pixels[y * SdlChipDisplay::SDL_CHIP_DISPLAY_WIDTH + x]=frameBuff[y* SdlChipDisplay::SDL_CHIP_DISPLAY_WIDTH + x];
         }
     }

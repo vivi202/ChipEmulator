@@ -7,6 +7,8 @@
 App::~App() {
     delete window;
     soundEngine->removeSynth(&synth);
+    engine.removeDrawable(&crtFilter);
+    engine.removeDrawable(chipInterpreterHandler.get());
     delete soundEngine;
 }
 
@@ -37,6 +39,11 @@ void App::setupInterpreter() {
 
 void App::setupRenderEngine() {
     engine.addDrawable(chipInterpreterHandler.get());
+    crtFilter.setCrossingLineEnabled(commandLine->isCrossingLineEnabled());
+    crtFilter.setCrossingLineDirection(commandLine->isCrossingLineDirection());
+    crtFilter.setHorizontalScanLinesEnabled(commandLine->isHorizontalScanLinesEnabled());
+    crtFilter.setVerticalScanLinesEnabled(commandLine->isVerticalScanLinesEnabled());
+    engine.addDrawable(&crtFilter);
 }
 
 void App::setupCommandlineParser(int argc, char *argv[]) {
@@ -46,16 +53,13 @@ void App::setupCommandlineParser(int argc, char *argv[]) {
 
 void App::run() {
     while (window->isRunning()){
-        currentTime=SDL_GetTicks();
-        if(currentTime - lastInputPoll > inputPollPeriod) {//poll at 60Hz to avoid too much cpu usage.
             SDL_Event e;
             while (SDL_PollEvent(&e) != 0) {
                 window->events(e);
                 chipInterpreterHandler->handleEvents(e);
             }
-            lastInputPoll=currentTime;
-        }
         chipInterpreterHandler->handleExecution();
         engine.render();
+        }
+
     }
-}

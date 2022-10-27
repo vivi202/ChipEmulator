@@ -16,9 +16,6 @@ public:
 private:
     void drawAll();
     std::list<Drawable*> drawableList;
-    uint32_t lastRender=0;
-    uint32_t currentTime=0;
-    const int RenderPeriod=16;
 };
 
 

@@ -10,6 +10,7 @@
 #include "SoundEngine.h"
 #include "Synth/SquareWaveTableSynth.h"
 #include "CommandLineArgParser.h"
+#include "Filters/CrtFilter.h"
 #include <memory>
 class App {
 public:
@@ -23,9 +24,7 @@ private:
     SquareWaveTableSynth synth=SquareWaveTableSynth(SoundEngine::samplePerSecond);
     std::unique_ptr<ChipInterpreterHandler> chipInterpreterHandler= nullptr;
     RenderEngine engine;
-    uint32_t lastInputPoll=0;
-    uint32_t currentTime=0;
-    const uint32_t inputPollPeriod=5;
+    CrtFilter crtFilter;
     void setupCommandlineParser(int argc, char *argv[]);
     void setupWindow();
     void setupSoundEngine();

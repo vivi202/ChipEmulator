@@ -24,6 +24,28 @@ void CommandLineArgParser::parse() {
         if(arg == "--freq" ){
             frequency= std::stoi(nextArgument(arg));
         }
+        if(arg == "--scanH"){
+            horizontalScanLinesEnabled= true;
+        }
+        if(arg == "--scanV"){
+            verticalScanLinesEnabled= true;
+        }
+        if(arg == "--scanX"){
+            horizontalScanLinesEnabled= true;
+            verticalScanLinesEnabled= true;
+        }
+        if(arg == "--crossDir"){
+            crossingLineEnabled = true;
+            std::string crossDir= nextArgument(arg);
+            if(crossDir == "V"){
+                crossingLineDirection= false;
+            } else if (crossDir == "H"){
+                crossingLineDirection= true;
+            }else{
+                std::cerr<<"\n"<<"invalid crossing line direction";
+                printUsage();
+            }
+        }
     }
     if(!isRom){
         std::cerr<<"\n"<<"Path to rom is either missing or invalid!";
@@ -47,5 +69,21 @@ std::string CommandLineArgParser::nextArgument(const std::string_view &stringVie
 
 void CommandLineArgParser::printUsage() {
     std::cerr<<"\n"<<"Usage: ChipInterpreter --rom PathToYourRom [--freq InterpreterFrequency]";
+}
+
+bool CommandLineArgParser::isHorizontalScanLinesEnabled() const {
+    return horizontalScanLinesEnabled;
+}
+
+bool CommandLineArgParser::isVerticalScanLinesEnabled() const {
+    return verticalScanLinesEnabled;
+}
+
+bool CommandLineArgParser::isCrossingLineEnabled() const {
+    return crossingLineEnabled;
+}
+
+bool CommandLineArgParser::isCrossingLineDirection() const {
+    return crossingLineDirection;
 }
 
