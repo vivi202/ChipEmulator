@@ -6,6 +6,7 @@
 #define CHIPEMULATOR_KEYBOARD_H
 
 #include <array>
+#include <cstdint>
 #include "ResettableComponent.h"
 
 

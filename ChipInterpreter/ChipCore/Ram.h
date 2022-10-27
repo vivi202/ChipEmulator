@@ -7,6 +7,7 @@
 
 #include "ResettableComponent.h"
 #include <array>
+#include <cstdint>
 class Ram :public ResettableComponent{
 public:
     //chip8 can address memory from 0x000 to 0xFFF

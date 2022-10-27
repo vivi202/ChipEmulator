@@ -5,6 +5,7 @@
 #ifndef CHIPEMULATOR_REGISTERBANK_H
 #define CHIPEMULATOR_REGISTERBANK_H
 #include <array>
+#include <cstdint>
 #include "ResettableComponent.h"
 class RegisterBank: public ResettableComponent{
 public:
