@@ -191,12 +191,12 @@ TEST_F(InstructionTests,SubVxVy){
 }
 
 TEST_F(InstructionTests,ShrVxVy){
-    core.registerBank[2]=0xA1;
-    auto shrVxVyInstruction=std::make_unique<ShrVxVy>(0x8206);
+    core.registerBank[3]=0xA1;
+    auto shrVxVyInstruction=std::make_unique<ShrVxVy>(0x8236);
     shrVxVyInstruction->execute(core);
     ASSERT_EQ(core.registerBank[0xF],1);
     ASSERT_EQ(core.registerBank[2],0x50);
-    core.registerBank[2]=0xB0;
+    core.registerBank[3]=0xB0;
     shrVxVyInstruction->execute(core);
     ASSERT_EQ(core.registerBank[0xF],0);
     ASSERT_EQ(core.registerBank[2],0x58);
@@ -216,12 +216,12 @@ TEST_F(InstructionTests,SubnVxVy){
 }
 
 TEST_F(InstructionTests,ShlVxVy){
-    core.registerBank[7]=0x80;
+    core.registerBank[3]=0x80;
     auto shlVxVyInstruction=std::make_unique<ShlVxVy>(0x873E);
     shlVxVyInstruction->execute(core);
     ASSERT_EQ(core.registerBank[0xF],1);
     ASSERT_EQ(core.registerBank[0x7],0x00);
-    core.registerBank[7]=0x40;
+    core.registerBank[3]=0x40;
     shlVxVyInstruction->execute(core);
     ASSERT_EQ(core.registerBank[0xF],0);
     ASSERT_EQ(core.registerBank[0x7],0x80);
