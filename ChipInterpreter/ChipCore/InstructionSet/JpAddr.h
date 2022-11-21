@@ -9,6 +9,9 @@
 class JpAddr: public Instruction{
 public:
     explicit JpAddr(uint16_t machineCode): Instruction(machineCode){};
+
+    ~JpAddr() override = default;
+
     void execute(ChipCore &core) override {
         core.registerBank.pcReg=nnn;
     }

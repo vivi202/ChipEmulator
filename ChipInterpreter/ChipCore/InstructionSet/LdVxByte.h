@@ -9,6 +9,9 @@
 class LdVxByte : public Instruction{
 public:
     explicit LdVxByte(uint16_t machineCode): Instruction(machineCode){};
+
+    ~LdVxByte() override = default;
+
     void execute(ChipCore &core) override {
         core.registerBank[x]=kk;
     }

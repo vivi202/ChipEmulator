@@ -32,23 +32,23 @@ void App::setupSoundEngine() {
 
 
 void App::setupInterpreter() {
-    Rom rom(commandLine->getRomPath());
-    chipInterpreterHandler=std::make_unique<ChipInterpreterHandler>(commandLine->getFrequency());
+    Rom rom(argParser->getRomPath());
+    chipInterpreterHandler=std::make_unique<ChipInterpreterHandler>(argParser->getFrequency());
     chipInterpreterHandler->loadRom(rom);
 }
 
 void App::setupRenderEngine() {
     engine.addDrawable(chipInterpreterHandler.get());
-    crtFilter.setCrossingLineEnabled(commandLine->isCrossingLineEnabled());
-    crtFilter.setCrossingLineDirection(commandLine->isCrossingLineDirection());
-    crtFilter.setHorizontalScanLinesEnabled(commandLine->isHorizontalScanLinesEnabled());
-    crtFilter.setVerticalScanLinesEnabled(commandLine->isVerticalScanLinesEnabled());
+    crtFilter.setCrossingLineEnabled(argParser->isCrossingLineEnabled());
+    crtFilter.setCrossingLineDirection(argParser->isCrossingLineDirection());
+    crtFilter.setHorizontalScanLinesEnabled(argParser->isHorizontalScanLinesEnabled());
+    crtFilter.setVerticalScanLinesEnabled(argParser->isVerticalScanLinesEnabled());
     engine.addDrawable(&crtFilter);
 }
 
 void App::setupCommandlineParser(int argc, char *argv[]) {
-    commandLine=std::make_unique<CommandLineArgParser>(argc,argv);
-    commandLine->parse();
+    argParser=std::make_unique<ArgParser>(argc, argv);
+    argParser->parse();
 }
 
 void App::run() {

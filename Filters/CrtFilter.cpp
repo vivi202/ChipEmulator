@@ -41,7 +41,7 @@ void CrtFilter::generateScanLines() {
             max=width;
         else
             max=height;
-        frameCounter+=2;
+        frameCounter+=4;
         if(frameCounter >= 60){
             crossingLineCounter=(crossingLineCounter + scanLinesDensity) % max;
             frameCounter=0;

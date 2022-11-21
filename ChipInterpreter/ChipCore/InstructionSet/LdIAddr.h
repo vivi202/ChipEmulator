@@ -9,6 +9,9 @@
 class LdIAddr: public Instruction{
 public:
     explicit LdIAddr(uint16_t machineCode): Instruction(machineCode){};
+
+    ~LdIAddr() override = default;
+
     void execute(ChipCore &core) override {
         core.registerBank.iReg=nnn;
     }

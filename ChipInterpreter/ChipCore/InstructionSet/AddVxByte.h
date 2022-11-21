@@ -10,6 +10,8 @@ class AddVxByte : public Instruction {
 public:
     explicit AddVxByte(uint16_t machineCode): Instruction(machineCode){};
 
+    ~AddVxByte() override = default;
+
     void execute(ChipCore &core) override {
         core.registerBank[x]+=kk;
     }

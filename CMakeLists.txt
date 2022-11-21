@@ -19,7 +19,8 @@ add_executable(ChipEmulator main.cpp Window.cpp Window.h SdlChipDisplay.cpp SdlC
         DisplayTextureHandler.h Drawable.h RenderEngine.cpp RenderEngine.h ChipInterpreterHandler.cpp
         ChipInterpreterHandler.h KeyBindings.cpp KeyBindings.h SoundEngine.cpp SoundEngine.h Synth/WaveTableSynth.h
         Synth/SineWaveTableSynth.cpp Synth/SineWaveTableSynth.h Synth/SquareWaveTableSynth.cpp
-        Synth/SquareWaveTableSynth.h CommandLineArgParser.cpp CommandLineArgParser.h App.cpp App.h Filters/CrtFilter.cpp Filters/CrtFilter.h)
+        Synth/SquareWaveTableSynth.h ArgParser.cpp ArgParser.h App.cpp App.h Filters/CrtFilter.cpp
+        Filters/CrtFilter.h)
 target_link_libraries(ChipEmulator ${SDL2_LIBRARIES} ChipInterpreter)
 
 enable_testing()

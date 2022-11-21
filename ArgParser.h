@@ -2,15 +2,15 @@
 // Created by vincenzo on 27/10/22.
 //
 
-#ifndef CHIPEMULATOR_COMMANDLINEARGPARSER_H
-#define CHIPEMULATOR_COMMANDLINEARGPARSER_H
+#ifndef CHIPEMULATOR_ARGPARSER_H
+#define CHIPEMULATOR_ARGPARSER_H
 
 #include <vector>
 #include <string_view>
 #include <string>
-class CommandLineArgParser {
+class ArgParser {
 public:
-    CommandLineArgParser(int argc,char *argv[]){
+    ArgParser(int argc, char *argv[]){
         argumentLength=argc;
         argvPointer=argv;
     };
@@ -43,4 +43,4 @@ private:
 };
 
 
-#endif //CHIPEMULATOR_COMMANDLINEARGPARSER_H
+#endif //CHIPEMULATOR_ARGPARSER_H

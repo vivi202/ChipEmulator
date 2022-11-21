@@ -11,6 +11,8 @@ public:
     const int spriteWidth=8;
     explicit DrwVxVyNibble(uint16_t machineCode): Instruction(machineCode){};
 
+    ~DrwVxVyNibble() override = default;
+
     void execute(ChipCore &core) override {
         uint16_t startAddress=core.registerBank.iReg;//base address of sprite data.
         uint8_t spriteHeight=n;//height of sprite

@@ -9,7 +9,7 @@
 #include "ChipInterpreterHandler.h"
 #include "SoundEngine.h"
 #include "Synth/SquareWaveTableSynth.h"
-#include "CommandLineArgParser.h"
+#include "ArgParser.h"
 #include "Filters/CrtFilter.h"
 #include <memory>
 class App {
@@ -18,7 +18,7 @@ public:
     App(int argc, char *argv[]);
     void run();
 private:
-    std::unique_ptr<CommandLineArgParser> commandLine;
+    std::unique_ptr<ArgParser> argParser;
     Window* window= nullptr;
     SoundEngine* soundEngine= nullptr;
     SquareWaveTableSynth synth=SquareWaveTableSynth(SoundEngine::samplePerSecond);

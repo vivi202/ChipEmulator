@@ -2,11 +2,11 @@
 // Created by vincenzo on 27/10/22.
 //
 
-#include "CommandLineArgParser.h"
+#include "ArgParser.h"
 #include <string>
 #include <iostream>
 #include <filesystem>
-void CommandLineArgParser::parse() {
+void ArgParser::parse() {
     const std::vector<std::string_view> args(argvPointer+1,argvPointer+argumentLength);
     if(args.size() < 2){
         std::cerr<<"Missing required parameters!";
@@ -54,36 +54,36 @@ void CommandLineArgParser::parse() {
     }
 }
 
-const std::string &CommandLineArgParser::getRomPath() const {
+const std::string &ArgParser::getRomPath() const {
     return romPath;
 }
 
-int CommandLineArgParser::getFrequency() const {
+int ArgParser::getFrequency() const {
     return frequency;
 }
 
-std::string CommandLineArgParser::nextArgument(const std::string_view &stringView) {
+std::string ArgParser::nextArgument(const std::string_view &stringView) {
     auto res=(*(&stringView+1)).data();
     return res;
 }
 
-void CommandLineArgParser::printUsage() {
+void ArgParser::printUsage() {
     std::cerr<<"\n"<<"Usage: ChipInterpreter --rom PathToYourRom [--freq InterpreterFrequency]";
 }
 
-bool CommandLineArgParser::isHorizontalScanLinesEnabled() const {
+bool ArgParser::isHorizontalScanLinesEnabled() const {
     return horizontalScanLinesEnabled;
 }
 
-bool CommandLineArgParser::isVerticalScanLinesEnabled() const {
+bool ArgParser::isVerticalScanLinesEnabled() const {
     return verticalScanLinesEnabled;
 }
 
-bool CommandLineArgParser::isCrossingLineEnabled() const {
+bool ArgParser::isCrossingLineEnabled() const {
     return crossingLineEnabled;
 }
 
-bool CommandLineArgParser::isCrossingLineDirection() const {
+bool ArgParser::isCrossingLineDirection() const {
     return crossingLineDirection;
 }
 
