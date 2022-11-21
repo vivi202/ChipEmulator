@@ -13,9 +13,9 @@ public:
     ~LdIVx() override = default;
 
     void execute(ChipCore &core) override {
-        uint16_t address=core.registerBank.iReg;
-        for (uint8_t offset = 0; offset <= x ; ++offset) {
-            core.ram.write(address+offset,core.registerBank[offset]);
+        uint16_t startAddress=core.registerBank.iReg;
+        for (core.registerBank.iReg; core.registerBank.iReg <= startAddress+x ; ++core.registerBank.iReg) {
+            core.ram.write(core.registerBank.iReg,core.registerBank[core.registerBank.iReg-startAddress]);
         }
     }
 

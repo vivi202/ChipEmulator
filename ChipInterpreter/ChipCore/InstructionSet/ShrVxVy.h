@@ -14,8 +14,8 @@ public:
     ~ShrVxVy() override = default;
 
     void execute(ChipCore &core) override {
-        uint8_t flag=core.registerBank[x] & 0x01;//mask lsb
-        core.registerBank[x]>>=1;
+        uint8_t flag=core.registerBank[y] & 0x01;//mask lsb
+        core.registerBank[x]=core.registerBank[y]>>1;
         core.registerBank[0xF]=flag;
     }
 
