@@ -15,6 +15,7 @@ public:
 
     void execute(ChipCore &core) override {
         core.registerBank[x]^=core.registerBank[y];
+        core.registerBank[0xF]=0;
     }
 
     std::string toAsm() const override {
